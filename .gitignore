@@ -1,0 +1,7 @@
+*
+!iterm_profile/com.googlecode.iterm2.plist
+!.config/fish/conf.d/omf.fish
+!.vimrc
+!.gitconfig
+!.agignore
+!.gitignore
