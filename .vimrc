@@ -20,6 +20,7 @@ set lazyredraw
 set hlsearch
 set incsearch
 set mouse=a
+set t_Co=256
 syntax on
 
 filetype plugin indent on
@@ -27,7 +28,8 @@ call plug#begin()
 Plug 'Raimondi/delimitMate'
 Plug 'airblade/vim-gitgutter'
 Plug 'ap/vim-css-color'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'ctrlpvim/ctrlp.vim' "open file
 Plug 'duggiefresh/vim-easydir'
@@ -60,6 +62,8 @@ call plug#end()
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+let g:airline_theme='deus'
+let g:airline_powerline_fonts = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
