@@ -36,3 +36,5 @@ alias gbDA="git branch | grep -v "master" | xargs git branch -D"
 alias v='vim'
 alias bi='bundle install'
 alias babel='./node_modules/.bin/babel'
+alias spsg='brew services start postgresql'
+alias kpsg='brew services stop postgresql'
