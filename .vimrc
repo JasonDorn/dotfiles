@@ -100,6 +100,7 @@ map <leader>rw :windo e!<cr>
 map <leader>,p "+p<cr>
 map <leader>D :call delete(expand('%')) \| bdelete!<cr>
 map <leader>st <c-y>,
+map <leader>fj :%!python -m json.tool<cr>
 
 nmap 0 ^
 nmap <silent> <leader>t :w \| :TestNearest<CR>
