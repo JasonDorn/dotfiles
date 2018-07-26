@@ -25,6 +25,11 @@ syntax on
 
 filetype plugin indent on
 call plug#begin()
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'terryma/vim-smooth-scroll'
+Plug 'xolox/vim-notes'
+Plug 'xolox/vim-misc'
 Plug 'kchmck/vim-coffee-script'
 Plug 'Raimondi/delimitMate'
 Plug 'airblade/vim-gitgutter'
@@ -77,16 +82,12 @@ let g:javascript_plugin_ngdoc = 1
 let test#javascript#mocha#options = '--compilers js:babel-register -R spec'
 let test#javascript#jest#options = 'react-scripts test --env=jsdom'
 let g:test#preserve_screen = 1
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\v[\/]\.(git|hg|svn|yardoc)|bower_components|assets|public|node_modules|_build|tmp|log|deps|priv\/static$',
-      \ 'file': '\v\.(exe|so|dll|dat|DS_Store)$'
-      \ }
+let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-  let g:ctrlp_use_caching = 0
 endif
+
+let test#ruby#rspec#executable = 'z r'
 
 map , <leader>
 map <leader>nt :NERDTreeFind<CR>
@@ -119,9 +120,12 @@ nnoremap gb <C-o>
 nnoremap <leader><space> :nohl<CR>
 map f <plug>(easymotion-bd-f)
 
-nnoremap <silent> gr :CtrlPMRU<CR>
-nnoremap <silent> go :CtrlP<CR>
+nnoremap <silent> go :Files<CR>
 nnoremap <space> :w<CR>
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 
 colorscheme nova
 

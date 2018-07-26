@@ -28,13 +28,22 @@ alias gup='git pull --rebase'
 alias bi='bundle install'
 alias gci="git ci -am"
 alias g="git"
-alias gri='g rebase -i origin/master'
+alias gri='g rebase -i origin/develop'
 alias srails='bin/rails'
 alias sw="env QUEUE='*' bundle exec rake resque:work"
 alias be="bundle exec"
-alias gbDA="git branch | grep -v "master" | xargs git branch -D"
+alias gbDA="git branch | grep -v "develop" | xargs git branch -D"
 alias v='vim'
 alias bi='bundle install'
 alias babel='./node_modules/.bin/babel'
 alias spsg='brew services start postgresql'
 alias kpsg='brew services stop postgresql'
+alias sz='export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES'
+
+function hb.pgcli
+  psql "postgresql://jason@$argv.cyutk09lvyxz.us-west-2.rds.amazonaws.com:5432/homebase"
+end
+
+alias hb.db.clone='hb.pgcli clone-standalone'
+
+export PGPASSWORD=kbtsWAwUoBFLKJY6BpRs
