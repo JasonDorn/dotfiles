@@ -68,6 +68,7 @@ call plug#end()
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+let g:NERDTreeWinSize=40
 let g:airline_theme='deus'
 let g:airline_powerline_fonts = 1
 let g:syntastic_always_populate_loc_list = 1
