@@ -26,7 +26,6 @@ alias gp="g push"
 alias gpu="g push -u origin HEAD"
 alias gup='git pull --rebase'
 alias bi='bundle install'
-alias gci="git ci -am"
 alias g="git"
 alias gri='g rebase -i origin/develop'
 alias srails='bin/rails'
@@ -39,6 +38,9 @@ alias babel='./node_modules/.bin/babel'
 alias spsg='brew services start postgresql'
 alias kpsg='brew services stop postgresql'
 alias sz='export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES'
+alias gcod='git checkout develop'
+alias gaca='gA; git commit --amend --no-edit'
+alias gacfp='gA; git commit -am -no-commit; gpf'
 
 function hb.pgcli
   psql "postgresql://jason@$argv.cyutk09lvyxz.us-west-2.rds.amazonaws.com:5432/homebase"

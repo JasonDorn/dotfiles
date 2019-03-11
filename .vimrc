@@ -1,10 +1,13 @@
 set nocompatible
+set belloff=all
 set cursorline
 if has("autocmd")
   filetype indent plugin on
 endif
 set backspace=indent,eol,start
 highlight ColorColumn ctermbg=cyan
+set termguicolors
+let ayucolor="mirage"
 set colorcolumn=80
 set tabstop=2
 set expandtab
@@ -25,6 +28,11 @@ syntax on
 
 filetype plugin indent on
 call plug#begin()
+Plug 'flazz/vim-colorschemes'
+Plug 'sudar/vim-arduino-syntax'
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'terryma/vim-smooth-scroll'
@@ -41,6 +49,7 @@ Plug 'ctrlpvim/ctrlp.vim' "open file
 Plug 'duggiefresh/vim-easydir'
 Plug 'easymotion/vim-easymotion' "jummp to highlighted chars
 Plug 'ervandew/supertab'
+" Plug 'Shougo/neocomplete.vim'
 Plug 'godlygeek/tabular'
 Plug 'janko-m/vim-test'
 Plug 'kana/vim-textobj-user'
@@ -56,6 +65,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible' "sensible defaults
@@ -88,7 +98,7 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 endif
 
-let test#ruby#rspec#executable = 'z r'
+let test#ruby#rspec#executable = 'spring rspec'
 
 map , <leader>
 map <leader>nt :NERDTreeFind<CR>
@@ -96,14 +106,15 @@ map <leader>q :q<cr>
 map <leader>w :w<cr>
 map <leader>dd "_dd
 map <leader>v :vsplit<cr>
-map <leader>ss :split<cr>
+" map <leader>ss :Ag<cr>
 map <leader>av :AV<cr>
 map <leader>sv :SV<cr>
+map <leader>tl :ts<cr>
 map <leader>rw :windo e!<cr>
 map <leader>,p "+p<cr>
 map <leader>D :call delete(expand('%')) \| bdelete!<cr>
 map <leader>st <c-y>,
-map <leader>fj :%!python -m json.tool<cr>
+" map <leader>fj :%!python -m json.tool<cr>
 
 nmap 0 ^
 nmap <silent> <leader>t :w \| :TestNearest<CR>
@@ -111,6 +122,7 @@ nmap <silent> <leader>T :w \| :TestFile<CR>
 nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
+nnoremap <leader>ss :exe 'Ag!' expand('<cword>')<cr>
 nnoremap x "_x
 nnoremap gl <C-W><C-L>
 nnoremap gh <C-W><C-H>
@@ -119,7 +131,9 @@ nnoremap gk <C-W><C-K>
 nnoremap gwr <C-W><C-R>
 nnoremap gb <C-o>
 nnoremap <leader><space> :nohl<CR>
-map f <plug>(easymotion-bd-f)
+nnoremap <Leader>cp :let @+=expand('%:p')<CR>
+nnoremap <leader>. :CtrlPTag<cr>
+map <leader>f <plug>(easymotion-bd-f)
 
 nnoremap <silent> go :Files<CR>
 nnoremap <space> :w<CR>
@@ -128,7 +142,8 @@ noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
 noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
 noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 
-colorscheme nova
+" colorscheme nova
+colorscheme ayu
 
 function! RenameFile()
   let old_name = expand('%')
