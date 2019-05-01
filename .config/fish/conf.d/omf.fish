@@ -42,6 +42,10 @@ alias gcod='git checkout develop'
 alias gaca='gA; git commit --amend --no-edit'
 alias gacfp='gA; git commit -am -no-commit; gpf'
 
+function tc -d 'test in chrome' -a path
+  env BROWSER=chrome spring rspec $path
+end
+
 function hb.pgcli
   psql "postgresql://jason@$argv.cyutk09lvyxz.us-west-2.rds.amazonaws.com:5432/homebase"
 end

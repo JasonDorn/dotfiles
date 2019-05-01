@@ -24,6 +24,7 @@ set hlsearch
 set incsearch
 set mouse=a
 set t_Co=256
+set path+=~/Developer/Homebase1/lib/classes
 syntax on
 
 filetype plugin indent on
@@ -62,6 +63,7 @@ Plug 'rhysd/committia.vim'
 Plug 'rking/ag.vim' "global search word
 Plug 'scrooloose/nerdtree'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
@@ -78,6 +80,7 @@ call plug#end()
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+let test#ruby#use_spring_binstub = 1
 let g:NERDTreeWinSize=40
 let g:airline_theme='deus'
 let g:airline_powerline_fonts = 1
@@ -130,8 +133,9 @@ nnoremap gj <C-W><C-J>
 nnoremap gk <C-W><C-K>
 nnoremap gwr <C-W><C-R>
 nnoremap gb <C-o>
+nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader><space> :nohl<CR>
-nnoremap <Leader>cp :let @+=expand('%:p')<CR>
+nnoremap <Leader>cp :let @+=expand("%") . ':' . line(".")<CR>
 nnoremap <leader>. :CtrlPTag<cr>
 map <leader>f <plug>(easymotion-bd-f)
 
