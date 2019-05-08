@@ -80,7 +80,6 @@ call plug#end()
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-let test#ruby#use_spring_binstub = 1
 let g:NERDTreeWinSize=40
 let g:airline_theme='deus'
 let g:airline_powerline_fonts = 1
@@ -104,6 +103,7 @@ endif
 let test#ruby#rspec#executable = 'spring rspec'
 
 map , <leader>
+vnoremap <leader>ag "hy:Ag "<C-r>h"<CR>
 map <leader>nt :NERDTreeFind<CR>
 map <leader>q :q<cr>
 map <leader>w :w<cr>
