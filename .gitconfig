@@ -2,6 +2,7 @@
   name = Jason Dorn
   email = apollo701@gmail.com
 [alias]
+	jira = "!ruby /Users/json/Developer/Homebase1/bin/jira.rb $@"
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [core]
   editor = vim
