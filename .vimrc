@@ -46,7 +46,6 @@ Plug 'ap/vim-css-color'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'cakebaker/scss-syntax.vim'
-Plug 'ctrlpvim/ctrlp.vim' "open file
 Plug 'duggiefresh/vim-easydir'
 Plug 'easymotion/vim-easymotion' "jummp to highlighted chars
 Plug 'ervandew/supertab'
@@ -73,6 +72,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible' "sensible defaults
 Plug 'tpope/vim-surround'
 Plug 'trevordmiller/nova-vim' "Nova color scheme plugin
+Plug 'chrisbra/csv.vim'
 " On-demand loading
 call plug#end()
 
@@ -100,32 +100,34 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 endif
 
-let test#ruby#rspec#executable = 'spring rspec'
+let test#ruby#rspec#executable = 'zeus rspec'
+" let test#ruby#rspec#executable = 'rspec'
 
 map , <leader>
 vnoremap <leader>ag "hy:Ag "<C-r>h"<CR>
 map <leader>nt :NERDTreeFind<CR>
+map <leader>tca :execute "!zeus tcs %"<CR>
+map <leader>tcs :execute "!zeus tcs %:" . line(".")<CR>
+map <leader>tc :execute "!zeus tc %:" . line(".")<CR>
 map <leader>q :q<cr>
 map <leader>w :w<cr>
 map <leader>dd "_dd
 map <leader>v :vsplit<cr>
 " map <leader>ss :Ag<cr>
-map <leader>av :AV<cr>
 map <leader>sv :SV<cr>
 map <leader>tl :ts<cr>
 map <leader>rw :windo e!<cr>
-map <leader>,p "+p<cr>
 map <leader>D :call delete(expand('%')) \| bdelete!<cr>
 map <leader>st <c-y>,
 " map <leader>fj :%!python -m json.tool<cr>
 
 nmap 0 ^
+xmap tt $h
+nmap tt $
 nmap <silent> <leader>t :w \| :TestNearest<CR>
 nmap <silent> <leader>T :w \| :TestFile<CR>
-nmap <silent> <leader>a :TestSuite<CR>
-nmap <silent> <leader>l :TestLast<CR>
-nmap <silent> <leader>g :TestVisit<CR>
 nnoremap <leader>ss :exe 'Ag!' expand('<cword>')<cr>
+nnoremap <leader>ag :Ag 
 nnoremap x "_x
 nnoremap gl <C-W><C-L>
 nnoremap gh <C-W><C-H>
@@ -139,7 +141,7 @@ nnoremap <Leader>cp :let @+=expand("%") . ':' . line(".")<CR>
 nnoremap <leader>. :CtrlPTag<cr>
 map <leader>f <plug>(easymotion-bd-f)
 
-nnoremap <silent> go :Files<CR>
+nnoremap <silent> go :FZF -i<CR>
 nnoremap <space> :w<CR>
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
@@ -159,6 +161,20 @@ function! RenameFile()
   endif
 endfunction
 map <leader>n :call RenameFile()<cr>
+
+function! CreateSpec()
+  try
+    :AV
+  catch
+    let file_name = expand('%:r')
+    let spec_file_name = substitute(file_name, 'app', 'spec', '') . '_spec.rb'
+
+    exec ':saveas ' . spec_file_name
+    execute "vsplit " . fnameescape(file_name) . '.rb'
+    :wincmd w
+  endtry
+endfunction
+map <leader>av :call CreateSpec()<cr>
 
 autocmd BufRead,BufNewFile *.es6 setfiletype javascript
 
