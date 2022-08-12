@@ -1,10 +1,11 @@
 call plug#begin()
+" Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'powerline/powerline'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'airblade/vim-gitgutter'
-" Plug 'ap/vim-css-color'
+Plug 'ap/vim-css-color'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'duggiefresh/vim-easydir'
@@ -32,9 +33,12 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'kchmck/vim-coffee-script'
 Plug 'morhetz/gruvbox'
+Plug 'preservim/tagbar'
 " Plug 'sainnhe/sonokai'
 " Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/remote', 'do': ':UpdateRemotePlugins' }
 call plug#end()
+" let vim_markdown_preview_browser='Google Chrome'
+" let vim_markdown_preview_github=1
 let g:coc_global_extensions = ['coc-solargraph']
 set background=dark
 let g:airline#extensions#tabline#enabled = 1
@@ -244,20 +248,20 @@ endif
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
-" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-"                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm(): "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " let g:endwise_no_mappings = 1
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-" nmap <silent> [g <Plug>(coc-diagnostic-prev)
-" nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nnoremap <leader>y  :<C-u>CocList -A --normal yank<cr>
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -379,3 +383,4 @@ nnoremap <Leader>9 :9b<CR>
 nnoremap <Leader>0 :10b<CR>
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
+nmap <Leader>tb :TagbarToggle<CR>

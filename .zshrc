@@ -114,6 +114,10 @@ alias lt1='ngrok http -hostname=local-tunnel.joinhomebase.com 3000'
 alias lt2='ngrok http -hostname=local-tunnel2.joinhomebase.com 3000'
 alias logs='tail -f log/development.log'
 alias killpuma='kill -9 $(lsof -i tcp:3000 -t)'
+alias obe9='gco obe9/feature-branch'
+alias rs='pgcli "host='homebase.coumrfl5tpqr.us-west-2.redshift.amazonaws.com' user='jasondorn' dbname='homebase' port='5439' password='H0m3b@s31!'"'
+alias tmux="TERM=screen-256color-bce tmux"
+alias hb.k='lsof -i:3000 | grep LISTEN | awk '\''{print $2}'\'' | xargs kill -9'
 
 function assets() {
   cd hb;
