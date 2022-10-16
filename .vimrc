@@ -4,6 +4,8 @@ Plug 'OmniSharp/omnisharp-vim'
 
 " General
 Plug 'vim-autoformat/vim-autoformat'
+" Color Theme
+Plug 'morhetz/gruvbox'
 
 " UI
 " Plug 'powerline/powerline'
@@ -60,6 +62,16 @@ Plug 'tpope/vim-surround'
 " Maybe don't need
 Plug 'tpope/vim-rbenv'
 
+" Render CSV better
+Plug 'chrisbra/csv.vim'
+
+" Load and host language servers
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" #OO Languages#
+" Summarize class
+Plug 'preservim/tagbar'
+
 " #RUBY#
 " auto end
 Plug 'tpope/vim-endwise'
@@ -68,16 +80,13 @@ Plug 'tpope/vim-rails'
 " GF in gemfile
 Plug 'tpope/vim-bundler'
 " Ruby highlight/auto complete
-Plug 'vim-ruby/vim-ruby'
+" Plug 'vim-ruby/vim-ruby' Don't think i need this anymore since solargraph
 
-Plug 'chrisbra/csv.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" #JS#
+" JS highlighting and indenting
 Plug 'MaxMEllon/vim-jsx-pretty'
+" Coffeescript coloring
 Plug 'kchmck/vim-coffee-script'
-Plug 'morhetz/gruvbox'
-Plug 'preservim/tagbar'
-" Plug 'sainnhe/sonokai'
-" Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/remote', 'do': ':UpdateRemotePlugins' }
 call plug#end()
 " let vim_markdown_preview_browser='Google Chrome'
 " let vim_markdown_preview_github=1
@@ -435,5 +444,5 @@ nnoremap <Leader>9 :9b<CR>
 nnoremap <Leader>0 :10b<CR>
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
-nmap <Leader>tb :TagbarToggle<CR>
+nmap <Leader>so :TagbarToggle<CR>
 set fileformats+=dos
