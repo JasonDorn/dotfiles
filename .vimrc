@@ -1,35 +1,75 @@
 call plug#begin()
-" Plug 'JamshedVesuna/vim-markdown-preview'
+" C#
 Plug 'OmniSharp/omnisharp-vim'
+
+" General
 Plug 'vim-autoformat/vim-autoformat'
-Plug 'powerline/powerline'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'terryma/vim-smooth-scroll'
+
+" UI
+" Plug 'powerline/powerline'
 Plug 'airblade/vim-gitgutter'
-Plug 'ap/vim-css-color'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'duggiefresh/vim-easydir'
-Plug 'easymotion/vim-easymotion' "jummp to highlighted chars
-Plug 'janko-m/vim-test'
-" Plug 'pangloss/vim-javascript'
-Plug 'rhysd/committia.vim'
+
+" MISC
+Plug 'terryma/vim-smooth-scroll'
+
+" Fuzzy Searching
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'rking/ag.vim' "global search word
+
+" Screen Search
+Plug 'easymotion/vim-easymotion'
+
+" Colors
+Plug 'ap/vim-css-color'
+
+" Create files/directories simultaneously
+Plug 'duggiefresh/vim-easydir'
+
+" Testing
+Plug 'janko-m/vim-test'
+
+" Commit messages
+Plug 'rhysd/committia.vim'
+
+" File Searcher
 Plug 'scrooloose/nerdtree'
+
+" Multi Cursors
 Plug 'terryma/vim-multiple-cursors'
+
+" Find and replace
 Plug 'tpope/vim-abolish'
+
+" Comment
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-endwise'
+
+" git Blame
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-rails'
+
+" Repeate commands
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-sensible' "sensible defaults
+
+" mnemonic surround
 Plug 'tpope/vim-surround'
+
+" Manages Rbenv via vim
+" Maybe don't need
 Plug 'tpope/vim-rbenv'
+
+" #RUBY#
+" auto end
+Plug 'tpope/vim-endwise'
+" finds partner files
+Plug 'tpope/vim-rails'
+" GF in gemfile
 Plug 'tpope/vim-bundler'
+" Ruby highlight/auto complete
 Plug 'vim-ruby/vim-ruby'
+
 Plug 'chrisbra/csv.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'MaxMEllon/vim-jsx-pretty'
@@ -41,6 +81,12 @@ Plug 'preservim/tagbar'
 call plug#end()
 " let vim_markdown_preview_browser='Google Chrome'
 " let vim_markdown_preview_github=1
+let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:fzf_layout = { 'window': { 'width': 0.6, 'height': 0.6 }}
+command! -bang -nargs=* BLines
+    \ call fzf#vim#grep(
+    \   'rg --with-filename --column --line-number --no-heading --smart-case . '.fnameescape(expand('%:p')), 1,
+    \   fzf#vim#with_preview({'options': '--layout reverse --query '.shellescape(<q-args>).' --with-nth=4.. --delimiter=":"'}, 'right:50%'))
 let g:OmniSharp_mono_path = '/opt/homebrew/bin/mono'
 let g:OmniSharp_server_use_mono = 1
 " let g:OmniSharp_server_use_net6 = 1
