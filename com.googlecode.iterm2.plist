@@ -836,7 +836,7 @@
 			<key>HotKey Window Animates</key>
 			<false/>
 			<key>HotKey Window AutoHides</key>
-			<true/>
+			<false/>
 			<key>HotKey Window Dock Click Action</key>
 			<integer>2</integer>
 			<key>HotKey Window Floats</key>
@@ -2316,7 +2316,7 @@
 		</dict>
 	</dict>
 	<key>ShowFullScreenTabBar</key>
-	<true/>
+	<false/>
 	<key>SoundForEsc</key>
 	<false/>
 	<key>VisualIndicatorForEsc</key>

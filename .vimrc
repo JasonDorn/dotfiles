@@ -1,5 +1,7 @@
 call plug#begin()
 " Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'OmniSharp/omnisharp-vim'
+Plug 'vim-autoformat/vim-autoformat'
 Plug 'powerline/powerline'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -39,6 +41,9 @@ Plug 'preservim/tagbar'
 call plug#end()
 " let vim_markdown_preview_browser='Google Chrome'
 " let vim_markdown_preview_github=1
+let g:OmniSharp_mono_path = '/opt/homebrew/bin/mono'
+let g:OmniSharp_server_use_mono = 1
+" let g:OmniSharp_server_use_net6 = 1
 let g:coc_global_extensions = ['coc-solargraph']
 set background=dark
 let g:airline#extensions#tabline#enabled = 1
@@ -85,6 +90,7 @@ autocmd BufRead,BufNewFile *.es6 setfiletype javascript
 autocmd StdinReadPre * let s:std_in=1
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+autocmd BufWritePost *.cs :Autoformat
 runtime macros/matchit.vim
 
 au BufRead,BufNewFile *.rabl setf ruby
@@ -113,14 +119,14 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 endif
 
-let test#ruby#rspec#executable = 'bin/rspec'
+let test#ruby#rspec#executable = 'bin/rspec --format documentation'
 
 " MAPPINGS
 map , <leader>
 vnoremap <leader>ag "hy:Ag "<C-r>h"<CR>
 map <leader>nt :NERDTreeFind<CR>
 " map <leader>tca :execute "!zeus tcs %"<CR>
-" map <leader>tcs :execute "!zeus tcs %:" . line(".")<CR>
+map <leader>tcs :execute "!BROWSER=chrome bin/rspec %:" . line(".")<CR>
 map <leader>tc :execute "!BROWSER=chrome bin/rspec %:" . line(".")<CR>
 map <leader>q :q<cr>
 map <leader>w :w<cr>
@@ -384,3 +390,4 @@ nnoremap <Leader>0 :10b<CR>
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 nmap <Leader>tb :TagbarToggle<CR>
+set fileformats+=dos

@@ -118,6 +118,7 @@ alias obe9='gco obe9/feature-branch'
 alias rs='pgcli "host='homebase.coumrfl5tpqr.us-west-2.redshift.amazonaws.com' user='jasondorn' dbname='homebase' port='5439' password='H0m3b@s31!'"'
 alias tmux="TERM=screen-256color-bce tmux"
 alias hb.k='lsof -i:3000 | grep LISTEN | awk '\''{print $2}'\'' | xargs kill -9'
+alias sr='spring stop; spring start;'
 
 function assets() {
   cd hb;
@@ -129,9 +130,12 @@ function rollout() {
   be rake "rollouts:generate[${1}]"
 }
 
+export PATH="$PATH:/Users/jasondorn/.dotnet/tools"
+
+# path+=('/Library/Frameworks/Mono.framework/Versions/Current/bin')
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 # HB stuff
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
