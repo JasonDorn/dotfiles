@@ -83,37 +83,35 @@ Plug 'tpope/vim-bundler'
 " Plug 'vim-ruby/vim-ruby' Don't think i need this anymore since solargraph
 
 " #JS#
-" JS highlighting and indenting
-Plug 'MaxMEllon/vim-jsx-pretty'
 " Coffeescript coloring
 Plug 'kchmck/vim-coffee-script'
+" JS highlighting and indenting
+Plug 'yuezk/vim-js'
+Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
-" let vim_markdown_preview_browser='Google Chrome'
-" let vim_markdown_preview_github=1
-let g:ackprg = 'ag --nogroup --nocolor --column'
+" Search
+let g:ackprg = 'ag --nogroup --nocolor --column' "use AG/fzf
 let g:fzf_layout = { 'window': { 'width': 0.6, 'height': 0.6 }}
+" Leader F color search
 command! -bang -nargs=* BLines
     \ call fzf#vim#grep(
     \   'rg --with-filename --column --line-number --no-heading --smart-case . '.fnameescape(expand('%:p')), 1,
     \   fzf#vim#with_preview({'options': '--layout reverse --query '.shellescape(<q-args>).' --with-nth=4.. --delimiter=":"'}, 'right:50%'))
+
+" # C# TOOLS #
+" let g:OmniSharp_server_use_net6 = 1
 let g:OmniSharp_mono_path = '/opt/homebrew/bin/mono'
 let g:OmniSharp_server_use_mono = 1
-" let g:OmniSharp_server_use_net6 = 1
+" # RUBY TOOLS #
 let g:coc_global_extensions = ['coc-solargraph']
-set background=dark
+
+" set background=dark
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
-" colorscheme sonokai
-" set background=dark
-" let g:gruvbox_contrast_dark='hard'
 syntax enable
-" set t_Co=256
 set termguicolors
 set background=dark
 colorscheme gruvbox
-" colorscheme ayu
-" let ayucolor='mirage'
-" CONFIGS
 set nocompatible
 set cursorline
 if has("autocmd")
