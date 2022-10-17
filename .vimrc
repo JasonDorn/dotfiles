@@ -86,8 +86,7 @@ Plug 'tpope/vim-bundler'
 " Coffeescript coloring
 Plug 'kchmck/vim-coffee-script'
 " JS highlighting and indenting
-Plug 'yuezk/vim-js'
-Plug 'maxmellon/vim-jsx-pretty'
+Plug 'sheerun/vim-polyglot'
 call plug#end()
 " Search
 let g:ackprg = 'ag --nogroup --nocolor --column' "use AG/fzf
@@ -105,15 +104,24 @@ let g:OmniSharp_server_use_mono = 1
 " # RUBY TOOLS #
 let g:coc_global_extensions = ['coc-solargraph']
 
-" set background=dark
+" # JS TOOLS #
+let g:vim_jsx_pretty_colorful_config = 1
+
+" # VIM TOOLS #
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
-syntax enable
-set termguicolors
-set background=dark
+" COLORSCHEME
 colorscheme gruvbox
-set nocompatible
+
+" MAYBE REMOVE
+syntax enable
+" set termguicolors " Colors more intense
+" set background=dark
+" set nocompatible
+
+" Multi window highlight
 set cursorline
+
 if has("autocmd")
   filetype indent plugin on
 endif
@@ -179,7 +187,7 @@ map , <leader>
 vnoremap <leader>ag "hy:Ag "<C-r>h"<CR>
 map <leader>nt :NERDTreeFind<CR>
 " map <leader>tca :execute "!zeus tcs %"<CR>
-map <leader>tcs :execute "!BROWSER=chrome bin/rspec %:" . line(".")<CR>
+map <leader>tcs :execute "!SPEED=1 BROWSER=chrome bin/rspec %:" . line(".")<CR>
 map <leader>tc :execute "!BROWSER=chrome bin/rspec %:" . line(".")<CR>
 map <leader>q :q<cr>
 map <leader>w :w<cr>
