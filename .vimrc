@@ -91,6 +91,11 @@ call plug#end()
 " Search
 let g:ackprg = 'ag --nogroup --nocolor --column' "use AG/fzf
 let g:fzf_layout = { 'window': { 'width': 0.6, 'height': 0.6 }}
+let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
+vnoremap <leader>ag "hy:Ag "<C-r>h"<CR>
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+endif
 " Leader F color search
 command! -bang -nargs=* BLines
     \ call fzf#vim#grep(
@@ -101,15 +106,27 @@ command! -bang -nargs=* BLines
 " let g:OmniSharp_server_use_net6 = 1
 let g:OmniSharp_mono_path = '/opt/homebrew/bin/mono'
 let g:OmniSharp_server_use_mono = 1
+autocmd BufWritePost *.cs :Autoformat
 " # RUBY TOOLS #
 let g:coc_global_extensions = ['coc-solargraph']
+let test#ruby#rspec#executable = 'bin/rspec --format documentation'
+au BufRead,BufNewFile *.rabl setf ruby
 
 " # JS TOOLS #
 let g:vim_jsx_pretty_colorful_config = 1
+let g:jsx_ext_required = 0 " TODO: CHECK THIS AND ALL BELOW
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_ngdoc = 1
+let test#javascript#mocha#options = '--compilers js:babel-register -R spec'
+let test#javascript#jest#options = 'react-scripts test --env=jsdom'
+let g:test#javascript#runner = 'jest'
 
 " # VIM TOOLS #
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline_theme='deus'
+let g:airline_powerline_fonts = 1
+
 " COLORSCHEME
 colorscheme gruvbox
 
@@ -122,13 +139,20 @@ syntax enable
 " Multi window highlight
 set cursorline
 
-if has("autocmd")
-  filetype indent plugin on
-endif
+" NERDTree
+autocmd StdinReadPre * let s:std_in=1
+map <leader>nt :NERDTreeFind<CR>
+let g:NERDTreeWinSize=40
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
+" EASY MOTION
+map <silent>f <plug>(easymotion-bd-f)
+
+" Generic VIM stuff
 set backspace=indent,eol,start
 highlight ColorColumn ctermbg=cyan
-set belloff=all
-set colorcolumn=80
+set belloff=all " no bells
+set colorcolumn=100
 set tabstop=2
 set expandtab
 set shiftwidth=2
@@ -136,76 +160,53 @@ set smarttab
 set noswapfile
 set number
 set numberwidth=5
-set clipboard=unnamed
+set clipboard=unnamedplus
 set ignorecase
 set list listchars=tab:»·,trail:·
 set lazyredraw
 set hlsearch
 set incsearch
-set mouse=a
-set path+=~/Developer/Homebase1/app/services
-syntax on"
+set mouse=r
+syntax on
 filetype plugin indent on
-autocmd BufRead,BufNewFile *.es6 setfiletype javascript
-
-autocmd StdinReadPre * let s:std_in=1
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-autocmd BufWritePost *.cs :Autoformat
 runtime macros/matchit.vim
+nnoremap <leader>f :BLines<CR>
 
-au BufRead,BufNewFile *.rabl setf ruby
-let g:NERDTreeWinSize=40
-let g:airline_theme='deus'
-let g:airline_powerline_fonts = 1
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-" end
-
-let g:jsx_ext_required = 0
-let g:javascript_plugin_jsdoc = 1
-let g:javascript_plugin_ngdoc = 1
-let test#javascript#mocha#options = '--compilers js:babel-register -R spec'
-let test#javascript#jest#options = 'react-scripts test --env=jsdom'
-let g:test#javascript#runner = 'jest'
+" TESTING
 let test#ruby#bundle_exec = 0
 let test#strategy = "vimterminal"
 let test#vim#term_position = "belowright 20"
 let g:test#preserve_screen = 1
-let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
-if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor
-endif
+map <leader>tcs :execute "!SPEED=1 BROWSER=chrome bin/rspec %:" . line(".")<CR>
+map <leader>tc :execute "!BROWSER=chrome bin/rspec %:" . line(".")<CR>
 
-let test#ruby#rspec#executable = 'bin/rspec --format documentation'
+
+
+nmap <Leader>so :TagbarToggle<CR>
+
+if has("autocmd")
+  filetype indent plugin on
+endif
+set path+=~/Developer/Homebase1/app/services
+
+
+
 
 " MAPPINGS
 map , <leader>
-vnoremap <leader>ag "hy:Ag "<C-r>h"<CR>
-map <leader>nt :NERDTreeFind<CR>
-" map <leader>tca :execute "!zeus tcs %"<CR>
-map <leader>tcs :execute "!SPEED=1 BROWSER=chrome bin/rspec %:" . line(".")<CR>
-map <leader>tc :execute "!BROWSER=chrome bin/rspec %:" . line(".")<CR>
 map <leader>q :q<cr>
 map <leader>w :w<cr>
 map <leader>dd "_dd
 map <leader>v :vsplit<cr>
-" map <leader>ss :Ag<cr>
 map <leader>sv :SV<cr>
 map <leader>tl :ts<cr>
 map <leader>rw :windo e!<cr>
 map <leader>D :call delete(expand('%')) \| bdelete!<cr>
-map <leader>st <c-y>,
+" map <leader>st <c-y>, ""
 map tn :tabnew<cr>
 map tk :tabn<cr>
-map tj :tabp<cr>
-nnoremap <leader>f :BLines<CR>
-map <silent>f <plug>(easymotion-bd-f)
-" map <leader>fj :%!python -m json.tool<cr>
-
+" map tj :tabp<cr>
 nmap 0 ^
 xmap tt $h
 nmap tt $
@@ -258,8 +259,18 @@ function! CreateSpec()
 endfunction
 map <leader>av :call CreateSpec()<cr>"
 
-" AUTOCOMPLETE
-" " vim-syntastic settings
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+nnoremap <Leader>1 :1b<CR>
+nnoremap <Leader>2 :2b<CR>
+nnoremap <Leader>3 :3b<CR>
+nnoremap <Leader>4 :4b<CR>
+nnoremap <Leader>5 :5b<CR>
+nnoremap <Leader>6 :6b<CR>
+nnoremap <Leader>7 :7b<CR>
+nnoremap <Leader>8 :8b<CR>
+nnoremap <Leader>9 :9b<CR>
+nnoremap <Leader>0 :10b<CR>
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
 set encoding=utf-8
@@ -429,8 +440,6 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " " Resume latest coc list.
 " nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%{exists('*SyntasticStatuslineFlag')?SyntasticStatuslineFlag():''}
 set statusline+=%*
 set statusline+=%{FugitiveStatusline()}
 " Go to tab by number
@@ -438,17 +447,5 @@ nnoremap <Leader>l :ls<CR>
 " nnoremap <Leader>b :bp<CR>
 " nnoremap <Leader>f :bn<CR>
 " nnoremap <Leader>g :e#<CR>
-nnoremap <Leader>1 :1b<CR>
-nnoremap <Leader>2 :2b<CR>
-nnoremap <Leader>3 :3b<CR>
-nnoremap <Leader>4 :4b<CR>
-nnoremap <Leader>5 :5b<CR>
-nnoremap <Leader>6 :6b<CR>
-nnoremap <Leader>7 :7b<CR>
-nnoremap <Leader>8 :8b<CR>
-nnoremap <Leader>9 :9b<CR>
-nnoremap <Leader>0 :10b<CR>
 
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-nmap <Leader>so :TagbarToggle<CR>
-set fileformats+=dos
+" set fileformats+=dos
