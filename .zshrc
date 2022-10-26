@@ -119,6 +119,7 @@ alias rs='pgcli "host='homebase.coumrfl5tpqr.us-west-2.redshift.amazonaws.com' u
 alias tmux="TERM=screen-256color-bce tmux"
 alias hb.k='lsof -i:3000 | grep LISTEN | awk '\''{print $2}'\'' | xargs kill -9'
 alias sr='spring stop; spring start;'
+alias migrate='be rake db:migrate:with_data; be rake db:test:prepare'
 
 function assets() {
   cd hb;

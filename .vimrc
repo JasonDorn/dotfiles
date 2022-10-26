@@ -1,7 +1,13 @@
 " Homebase
 set path+=~/Developer/Homebase1/app/services
+set path+=~/Developer/Homebase1/client/jest
+set path+=~/Developer/Homebase1/client/lib
+set path+=~/Developer/Homebase1/client/src
 
 call plug#begin()
+Plug 'kristijanhusak/vim-create-pr'
+"CHANGES
+Plug 'airblade/vim-gitgutter'
 " Language Analysis
 Plug 'dense-analysis/ale'
 
@@ -90,7 +96,6 @@ set smarttab
 set noswapfile
 set number
 set numberwidth=5
-set clipboard=unnamedplus
 set ignorecase
 set list listchars=tab:»·,trail:·
 set lazyredraw
@@ -104,7 +109,8 @@ runtime macros/matchit.vim
 map , <leader>
 map <leader>q :q<cr>
 map <leader>w :w<cr>
-map <leader>dd "_dd map <leader>v :vsplit<cr>
+map <leader>dd "_dd
+map <leader>v :vsplit<cr>
 map <leader>sv :SV<cr>
 map <leader>tl :ts<cr>
 map <leader>rw :windo e!<cr>
@@ -112,12 +118,14 @@ map <leader>D :call delete(expand('%')) \| bdelete!<cr>
 nmap 0 ^
 xmap tt $h
 nmap tt $
-" nnoremap <leader><space> :nohl<CR>
+nnoremap <leader><space> :nohl<CR>
 nnoremap <Leader>cp :let @+=expand("%") . ':' . line(".")<CR>
+nnoremap <Leader>ccp :let @+=expand("%:p") . ':' . line(".")<CR>
 nnoremap <silent> go :Files<CR>
 nnoremap <space> :w<CR>
 nnoremap <leader>ss :exe 'Ag!' expand('<cword>')<cr>
 nnoremap <leader>ag :Ag
+vnoremap <leader>ag "hy:Ag "<C-r>h"<CR>
 nnoremap x "_x
 nnoremap gl <C-W><C-L>
 nnoremap gh <C-W><C-H>
@@ -126,7 +134,7 @@ nnoremap gk <C-W><C-K>
 nnoremap gwr <C-W><C-R>
 nnoremap gb <C-o>
 nnoremap <leader>gb :Git blame<CR>
-set clipboard=unnamedplus
+set clipboard=unnamed
 set backspace=indent,eol,start " allows backspace to go to new lines
 "
 " Enable 256-color by default in the terminal
@@ -168,7 +176,7 @@ map <leader>nt :NERDTreeFind<CR>
 " let NERDTreeShowHidden=1
 let NERDTreeRespectWildIgnore=1
 set wildignore+=*.DS_Store,*.min.*
-autocmd BufWinEnter * silent NERDTreeMirror
+" autocmd BufWinEnter * silent NERDTreeMirror
 " autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
 
 " AIRLINE
@@ -198,13 +206,13 @@ au BufRead,BufNewFile *.rabl setf ruby
 
 " TESTING
 let test#ruby#rspec#executable = 'bin/rspec --format documentation'
-let test#javascript#jest#options = 'react-scripts test --env=jsdom'
+let test#javascript#jest#executable = 'cd client;yarn test'
 let g:test#javascript#runner = 'jest'
 let test#ruby#bundle_exec = 0
 let test#strategy = "vimterminal"
 let test#vim#term_position = "belowright 20"
 let g:test#preserve_screen = 1
-map <leader>tcs :execute "!SPEED=1 BROWSER=chrome bin/rspec %:" . line(".")<CR>
+map <leader>tcs :execute "!SPEED=3 BROWSER=chrome bin/rspec %:" . line(".")<CR>
 map <leader>tc :execute "!BROWSER=chrome bin/rspec %:" . line(".")<CR>
 nmap <silent> <leader>t :w \| :TestNearest<CR>
 nmap <silent> <leader>T :w \| :TestFile<CR>
