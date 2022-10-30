@@ -41,7 +41,7 @@ Plug 'tpope/vim-surround'
 " COMMENTARY
 Plug 'tpope/vim-commentary'
 " auto end
-Plug 'tpope/vim-endwise'
+" Plug 'tpope/vim-endwise'
 " finds partner files
 Plug 'tpope/vim-rails'
 " GF in gemfile
@@ -57,9 +57,6 @@ Plug 'tpope/vim-abolish'
 " TAGBAR
 Plug 'preservim/tagbar'
 
-" Colors
-Plug 'ap/vim-css-color'
-
 " Multi Cursors
 Plug 'terryma/vim-multiple-cursors'
 
@@ -71,9 +68,6 @@ Plug 'janko-m/vim-test'
 
 " Create files/directories simultaneously
 Plug 'duggiefresh/vim-easydir'
-
-" Colors
-Plug 'ap/vim-css-color'
 
 " Screen Search
 Plug 'easymotion/vim-easymotion'

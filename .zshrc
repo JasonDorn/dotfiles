@@ -121,6 +121,7 @@ alias hb.k='lsof -i:3000 | grep LISTEN | awk '\''{print $2}'\'' | xargs kill -9'
 alias sr='spring stop; spring start;'
 alias migrate='be rake db:migrate:with_data; be rake db:test:prepare'
 alias db='v /Users/jasondorn/Developer/Homebase1/config/database.yml'
+alias unity='cd /Users/jasondorn/Developer/Unity'
 
 function assets() {
   cd hb;
