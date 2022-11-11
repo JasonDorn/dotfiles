@@ -5,15 +5,27 @@ set path+=~/Developer/Homebase1/client/lib
 set path+=~/Developer/Homebase1/client/src
 
 call plug#begin()
+"move blocks
+Plug 'matze/vim-move'
+" start screen
+Plug 'mhinz/vim-startify'
+
+" Color parethesis
+Plug 'luochen1990/rainbow'
+
+" Create PR
 Plug 'kristijanhusak/vim-create-pr'
+
 "CHANGES
 Plug 'airblade/vim-gitgutter'
+
 " Language Analysis
 Plug 'dense-analysis/ale'
 
 " AUTO COMPLETE
 " :CocInstall coc-tsserver coc-tabnine coc-pyright coc-html coc-css
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'codota/tabnine-vim'
 
 " Language Support
 Plug 'sheerun/vim-polyglot'
@@ -37,11 +49,13 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " SURROUND
+Plug 'jiangmiao/auto-pairs'
+Plug 'alvan/vim-closetag'
 Plug 'tpope/vim-surround'
 " COMMENTARY
 Plug 'tpope/vim-commentary'
 " auto end
-" Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-endwise'
 " finds partner files
 Plug 'tpope/vim-rails'
 " GF in gemfile
@@ -72,6 +86,9 @@ Plug 'duggiefresh/vim-easydir'
 " Screen Search
 Plug 'easymotion/vim-easymotion'
 
+"
+Plug 'pechorin/any-jump.vim'
+
 " C#
 Plug 'OmniSharp/omnisharp-vim'
 call plug#end()
@@ -97,6 +114,7 @@ syntax on
 filetype plugin indent on
 runtime macros/matchit.vim
 " MAPPINGS
+let g:move_key_modifier_visualmode = 'S'
 map , <leader>
 map <leader>q :q<cr>
 map <leader>w :w<cr>
@@ -113,7 +131,7 @@ nnoremap <leader><space> :nohl<CR>
 nnoremap <Leader>cp :let @+=expand("%") . ':' . line(".")<CR>
 nnoremap <Leader>ccp :let @+=expand("%:p") . ':' . line(".")<CR>
 nnoremap <silent> go :Files<CR>
-nnoremap <space> :w<CR>
+nnoremap <space> :w<cr>
 nnoremap <leader>ss :exe 'Ag!' expand('<cword>')<cr>
 nnoremap <leader>ag :Ag
 vnoremap <leader>ag "hy:Ag "<C-r>h"<CR>
@@ -171,6 +189,7 @@ set wildignore+=*.DS_Store,*.min.*
 " autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
 
 " AIRLINE
+let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline_theme='deus'
@@ -183,6 +202,7 @@ set nocompatible
 " Fix files with prettier, and then ESLint.
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'cs': ['dotnet-format'],
 \   'javascript': ['prettier', 'eslint'],
 \   'javascriptreact': ['prettier', 'eslint'],
 \}
@@ -312,8 +332,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
-" xmap <leader>f  <Plug>(coc-format-selected)
-" nmap <leader>f  <Plug>(coc-format-selected)
+" xmap <leader>ff  <Plug>(coc-format-selected)
+" nmap <leader>ff  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -413,8 +433,12 @@ else
 endif
 
 " Tell ALE to use OmniSharp for linting C# files, and no other linters.
-let g:ale_linters = { 'cs': ['OmniSharp'] }
+let g:ale_linters = {
+\ 'javascript': ['eslint'],
+\ 'cs': ['OmniSharp']
+\}
 
+" Lint Ruby files with binstub
 augroup omnisharp_commands
   autocmd!
 
