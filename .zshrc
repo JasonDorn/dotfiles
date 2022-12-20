@@ -4,6 +4,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/jasondorn/.oh-my-zsh"
 
+export EDITOR='lvim'
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -102,7 +103,7 @@ alias g="git"
 alias gri='g rebase -i origin/develop'
 alias be="bundle exec"
 alias gbDA="git branch | grep -v "develop" | xargs git branch -D"
-alias v='vim'
+alias v='lvim'
 alias bi='bundle install'
 alias gcod='git checkout develop'
 alias gaca='gA; git commit --amend --no-edit'
@@ -115,13 +116,14 @@ alias lt2='ngrok http -hostname=local-tunnel2.joinhomebase.com 3000'
 alias logs='tail -f log/development.log'
 alias killpuma='kill -9 $(lsof -i tcp:3000 -t)'
 alias obe9='gco obe9/feature-branch'
-alias rs='pgcli "host='homebase.coumrfl5tpqr.us-west-2.redshift.amazonaws.com' user='jasondorn' dbname='homebase' port='5439' password='H0m3b@s31!'"'
+alias rs="pgcli 'postgresql://jasondorn:H0m3b%40s31%21@homebase.coumrfl5tpqr.us-west-2.redshift.amazonaws.com:5439/homebase'"
 alias tmux="TERM=screen-256color-bce tmux"
 alias hb.k='lsof -i:3000 | grep LISTEN | awk '\''{print $2}'\'' | xargs kill -9'
 alias sr='spring stop; spring start;'
 alias migrate='be rake db:migrate:with_data; be rake db:test:prepare'
 alias db='v /Users/jasondorn/Developer/Homebase1/config/database.yml'
 alias unity='cd /Users/jasondorn/Developer/Unity'
+alias lvim='/Users/jasondorn/.local/bin/lvim'
 
 function assets() {
   cd hb;
@@ -133,6 +135,7 @@ function rollout() {
   be rake "rollouts:generate[${1}]"
 }
 
+export PGCLIENTENCODING=utf-8
 export PATH="$PATH:/Users/jasondorn/.dotnet/tools"
 
 # path+=('/Library/Frameworks/Mono.framework/Versions/Current/bin')
