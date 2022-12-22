@@ -2,8 +2,6 @@ local M = {}
 -- local override = require("custom.override")
 
 M.ui = {
-    theme = "everforest",
-    theme_toggle = { "everforest", "everforest_light" },
 }
 
 M.mappings = require("custom.mappings")
