@@ -4,6 +4,13 @@ M.general = {
   i = {},
 }
 
+M.test = {
+  n = {
+      ["<leader>t"] = { "<cmd>TestNearest -strategy=neovim --format documentation<cr>", "test nearest" },
+      ["<leader>T"] = { "<cmd>TestFile -strategy=neovim --format documentation<cr>", "test file" },
+    }
+}
+
 M.packer = {
   n = {
     ["<leader>ps"] = { "<cmd>PackerSync<cr>", "Packer Sync" },

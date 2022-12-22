@@ -5,6 +5,7 @@ local opt = vim.opt
 local g = vim.g
 
 g.noswapfile = true
+g.test.strategy = 'neovim'
 
 opt.tabstop = 4
 opt.softtabstop = 4
