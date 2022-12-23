@@ -44,4 +44,14 @@ return {
 			},
 		},
 	},
+	["nvim-pack/nvim-spectre"] = {},
+	["antoinemadec/FixCursorHold.nvim"] = {},
+	["nvim-neotest/neotest"] = {},
+	["phaazon/hop.nvim"] = {
+		branch = "v2",
+		config = function()
+			require("custom.plugins.hop")
+		end,
+	},
+	["tpope/vim-repeat"] = {},
 }
