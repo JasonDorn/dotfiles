@@ -1,5 +1,12 @@
 local M = {}
 
+M.other = {
+	n = {
+		["<leader>o"] = { "<cmd> Other <CR>", "other" },
+		["<leader>av"] = { "<cmd> OtherVSplit <CR>", "other v split" },
+	},
+}
+
 M.general = {
 	i = {},
 	n = {
