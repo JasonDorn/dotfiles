@@ -16,7 +16,6 @@ lspconfig.solargraph.setup({
 	capabilities = capabilities,
 	settings = {
 		solargraph = {
-			commandPath = "/Users/jasondorn/.rbenv/shims/solargraph",
 			diagnostics = true,
 			completion = true,
 		},

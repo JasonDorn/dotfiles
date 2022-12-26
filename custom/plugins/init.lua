@@ -6,6 +6,16 @@ return {
 			require("plugins.configs.alpha")
 		end,
 	},
+	["nvim-telescope/telescope.nvim"] = {
+		cmd = "Telescope",
+		config = function()
+			require("plugins.configs.telescope")
+			require("custom.plugins.telescope")
+		end,
+		setup = function()
+			require("core.utils").load_mappings("telescope")
+		end,
+	},
 	["nvim-telescope/telescope-fzf-native.nvim"] = {
 		run = "make",
 	},
@@ -57,14 +67,14 @@ return {
 	["matze/vim-move"] = {},
 	["rhysd/committia.vim"] = {},
 	["terryma/vim-multiple-cursors"] = {},
-	-- ["neovim/nvim-lspconfig"] = {
-	-- 	opt = true,
-	-- 	setup = function()
-	-- 		require("core.lazy_load").on_file_open("nvim-lspconfig")
-	-- 	end,
-	-- 	config = function()
-	-- 		require("plugins.configs.lspconfig")
-	-- 		require("custom.plugins.lspconfig")
-	-- 	end,
-	-- },
+	["neovim/nvim-lspconfig"] = {
+		opt = true,
+		setup = function()
+			require("core.lazy_load").on_file_open("nvim-lspconfig")
+		end,
+		config = function()
+			require("plugins.configs.lspconfig")
+			require("custom.plugins.lspconfig")
+		end,
+	},
 }

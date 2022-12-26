@@ -1,8 +1,7 @@
 local M = {}
 -- local override = require("custom.override")
 
-M.ui = {
-}
+M.ui = {}
 
 M.mappings = require("custom.mappings")
 
