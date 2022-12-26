@@ -12,3 +12,6 @@ opt.shiftround = false
 opt.expandtab = true
 opt.autoindent = true
 opt.smartindent = true
+vim.cmd([[
+    au BufRead,BufNewFile *.rabl setf ruby
+]])

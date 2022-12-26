@@ -17,12 +17,6 @@ return {
 			require("custom.plugins.null-ls")
 		end,
 	},
-	["neovim/nvim-lspconfig"] = {
-		config = function()
-			require("plugins.configs.lspconfig")
-			require("custom.plugins.lspconfig")
-		end,
-	},
 	["williamboman/mason.nvim"] = {
 		override_options = {
 			ensure_installed = {
@@ -54,4 +48,23 @@ return {
 		end,
 	},
 	["tpope/vim-repeat"] = {},
+	["tpope/vim-rhubarb"] = {},
+	["tpope/vim-fugitive"] = {},
+	["tpope/vim-bundler"] = {},
+	["tpope/vim-rails"] = {},
+	["tpope/vim-endwise"] = {},
+	["tpope/vim-surround"] = {},
+	["matze/vim-move"] = {},
+	["rhysd/committia.vim"] = {},
+	["terryma/vim-multiple-cursors"] = {},
+	-- ["neovim/nvim-lspconfig"] = {
+	-- 	opt = true,
+	-- 	setup = function()
+	-- 		require("core.lazy_load").on_file_open("nvim-lspconfig")
+	-- 	end,
+	-- 	config = function()
+	-- 		require("plugins.configs.lspconfig")
+	-- 		require("custom.plugins.lspconfig")
+	-- 	end,
+	-- },
 }

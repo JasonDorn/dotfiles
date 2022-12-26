@@ -4,7 +4,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/jasondorn/.oh-my-zsh"
 
-export EDITOR='lvim'
+export EDITOR='nvim'
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -84,8 +84,9 @@ plugins=(zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 #
 # Example aliases
-alias zshrc="vim ~/.zshrc"
-alias vimrc="vim ~/.vimrc"
+alias v='nvim'
+alias zshrc="lvim ~/.zshrc"
+alias vimrc="lvim ~/.vimrc"
 alias gco="g checkout"
 alias gf="g fetch origin"
 alias gr="g rebase origin/master"
@@ -103,7 +104,6 @@ alias g="git"
 alias gri='g rebase -i origin/develop'
 alias be="bundle exec"
 alias gbDA="git branch | grep -v "develop" | xargs git branch -D"
-alias v='lvim'
 alias bi='bundle install'
 alias gcod='git checkout develop'
 alias gaca='gA; git commit --amend --no-edit'
