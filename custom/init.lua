@@ -14,4 +14,5 @@ opt.autoindent = true
 opt.smartindent = true
 vim.cmd([[
     au BufRead,BufNewFile *.rabl setf ruby
+    set autoindent expandtab tabstop=2 shiftwidth=2
 ]])
