@@ -16,11 +16,14 @@ return {
 			require("core.utils").load_mappings("telescope")
 		end,
 	},
+	["junegunn/fzf"] = {
+		run = ":call fzf#install()",
+	},
+	["junegunn/fzf.vim"] = {},
 	["nvim-telescope/telescope-fzf-native.nvim"] = {
 		run = "make",
 	},
 	["vim-test/vim-test"] = {},
-	["kristijanhusak/vim-create-pr"] = {},
 	["jose-elias-alvarez/null-ls.nvim"] = {
 		after = "nvim-lspconfig",
 		config = function()
