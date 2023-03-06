@@ -4,6 +4,7 @@ local opt = vim.opt
 local g = vim.g
 
 g.noswapfile = true
+g.copilot_assume_mapped = true
 
 opt.tabstop = 4
 opt.softtabstop = 4

@@ -10,11 +10,12 @@ M.other = {
 M.general = {
 	i = {},
 	n = {
-		["<leader><leader>"] = { "<cmd> w <CR>", "save file" },
+		["<leader><leader>"] = { "<cmd> w <CR> <cmd> EslintFixAll <CR>", "save file" },
 		["gh"] = { "<C-w>h", "window left" },
 		["gl"] = { "<C-w>l", "window right" },
 		["gj"] = { "<C-w>j", "window down" },
 		["gu"] = { "<C-w>k", "window up" },
+		["<leader>cp"] = { '<cmd>:let @+ = expand("%")<CR>', "copy file path" },
 	},
 }
 

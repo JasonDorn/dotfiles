@@ -67,6 +67,29 @@ return {
 	["tpope/vim-rails"] = {},
 	["tpope/vim-endwise"] = {},
 	["tpope/vim-surround"] = {},
+	["hrsh7th/nvim-cmp"] = {
+		after = "friendly-snippets",
+		config = function()
+			require("custom.plugins.cmp")
+		end,
+	},
+	["zbirenbaum/copilot-cmp"] = {
+		after = { "copilot.lua" },
+		config = function()
+			require("copilot").setup({
+				require("copilot_cmp").setup(),
+				suggestion = { enabled = false },
+				panel = { enabled = false },
+			})
+		end,
+	},
+	["zbirenbaum/copilot.lua"] = {
+		cmd = "Copilot",
+		event = "InsertEnter",
+		config = function()
+			require("copilot").setup({})
+		end,
+	},
 	["matze/vim-move"] = {},
 	["rhysd/committia.vim"] = {},
 	["terryma/vim-multiple-cursors"] = {},
