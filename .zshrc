@@ -105,7 +105,7 @@ alias g="git"
 alias gri='g rebase -i origin/develop'
 alias be="bundle exec"
 alias gbDA="git branch | grep -v "develop" | xargs git branch -D"
-alias bi='bundle install'
+alias bi="bundle install && git checkout -f && git clean -df"
 alias gcod='git checkout develop'
 alias gaca='gA; git commit --amend --no-edit'
 alias gacfp='gA; git commit -am -no-commit; gpf'
@@ -117,13 +117,44 @@ alias logs='tail -f log/development.log'
 alias killpuma='kill -9 $(lsof -i tcp:3000 -t)'
 alias obe9='gco obe9/feature-branch'
 alias rs="pgcli 'postgresql://'"$HB_RS_PROD
+# alias rs="pgcli 'postgresql://jasondorn:H0m3b%40s31%21@homebase.coumrfl5tpqr.us-west-2.redshift.amazonaws.com:5439/homebase'"
 alias tmux="TERM=screen-256color-bce tmux"
 alias hb.k='lsof -i:3000 | grep LISTEN | awk '\''{print $2}'\'' | xargs kill -9'
 alias sr='spring stop; spring start;'
-alias migrate='be rake db:migrate:with_data; be rake db:test:prepare'
+alias migrate='be rake db:migrate:with_data && be rake db:test:prepare'
 alias db='v /Users/jasondorn/Developer/Homebase1/config/database.yml'
 alias unity='cd /Users/jasondorn/Developer/Unity'
 alias lvim='/Users/jasondorn/.local/bin/lvim'
+
+# Function to update the config/database.yml file
+update_database_yml() {
+  environment="$1"
+
+  case "$environment" in
+    "dev")
+      sed -i '' 's,<<: \*development_.*,<<: *development_direct,' config/database.yml
+      ;;
+    "staging")
+      sed -i '' 's,<<: \*development_.*,<<: *development_staging,' config/database.yml
+      ;;
+    "prod")
+      sed -i '' 's,<<: \*development_.*,<<: *development_prod,' config/database.yml
+      ;;
+    "clone")
+      sed -i '' 's,<<: \*development_.*,<<: *development_clone,' config/database.yml
+      ;;
+    *)
+      echo "Invalid environment: $environment"
+      return 1
+      ;;
+  esac
+}
+
+# Aliases for updating database.yml for different environments
+alias db_dev="update_database_yml dev"
+alias db_staging="update_database_yml staging && hops db connect -e staging -s homebase1"
+alias db_prod="update_database_yml prod && hops db connect -e production -s homebase1"
+alias db_clone="update_database_yml clone && hops db connect -e clone -s homebase1"
 
 function assets() {
   cd hb;

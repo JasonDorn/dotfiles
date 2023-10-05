@@ -17,6 +17,7 @@ M.general = {
 		["gj"] = { "<C-w>j", "window down" },
 		["gu"] = { "<C-w>k", "window up" },
 		["<leader>cp"] = { '<cmd>:let @+ = expand("%")<CR>', "copy file path" },
+		["<leader>b"] = { "<Nop>", "no op" },
 	},
 }
 
@@ -36,9 +37,32 @@ M.packer = {
 }
 
 M.telescope = {
+	plugin = true,
+
 	n = {
 		["\\\\"] = { "<cmd> Telescope find_files<CR>", "file finder" },
 		["\\f"] = { "<cmd> Telescope live_grep<CR>", "telescope live grep" },
+		["<leader>fw"] = {
+			string.format(
+				"<cmd>lua require('telescope.builtin').live_grep({ file_ignore_patterns = %s })<CR>",
+				vim.inspect({ "*.svg", "*.jpg", "*.png", "yarn.lock" })
+			),
+			"live grep",
+		},
+		["<leader>ff"] = {
+			string.format(
+				"<cmd>lua require('telescope.builtin').find_files({ file_ignore_patterns = %s })<CR>",
+				vim.inspect({
+					"*.svg",
+					"*.jpg",
+					"*.png",
+					"spec/fixtures/vcr_cassettes/*",
+					"node_modules/*",
+					"yarn.lock",
+				})
+			),
+			"find files",
+		},
 	},
 }
 
