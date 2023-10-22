@@ -6,6 +6,7 @@ local sources = {
 
   -- webdev stuff
   b.formatting.deno_fmt, -- choosed deno for ts/js files cuz its very fast!
+  b.diagnostics.deno_lint,
   b.formatting.prettier.with { filetypes = { "html", "markdown", "css" } }, -- so prettier works only on these filetypes
 
   -- Lua
@@ -15,7 +16,10 @@ local sources = {
   b.formatting.clang_format,
 
   -- ruby
-  b.formatting.rubocop,
+  b.formatting.standardrb,
+  b.diagnostics.standardrb,
+  -- b.formatting.rubocop,
+  -- b.diagnostics.rubocop,
 }
 
 null_ls.setup {
