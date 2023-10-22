@@ -37,6 +37,7 @@ M.mason = {
     "prettier",
     "solargraph",
     "rubocop",
+    "standardrb",
 
     -- c/cpp stuff
     "clangd",
