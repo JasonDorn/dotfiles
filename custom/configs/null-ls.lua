@@ -13,6 +13,9 @@ local sources = {
 
   -- cpp
   b.formatting.clang_format,
+
+  -- ruby
+  b.formatting.rubocop,
 }
 
 null_ls.setup {
