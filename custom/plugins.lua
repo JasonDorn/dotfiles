@@ -57,11 +57,20 @@ local plugins = {
 	{ "rhysd/committia.vim", lazy = false },
 	{ "terryma/vim-multiple-cursors", lazy = false },
 	{ "matze/vim-move", lazy = false },
-  { "kristijanhusak/vim-create-pr", lazy = false },
+	{ "kristijanhusak/vim-create-pr", lazy = false },
 
 	{
-    "rgroli/other.nvim",
-    ft = "ruby",
+		"phaazon/hop.nvim",
+		lazy = false,
+		branch = "v2",
+		config = function()
+			require("custom.configs.hop")
+		end,
+	},
+
+	{
+		"rgroli/other.nvim",
+		ft = "ruby",
 		config = function()
 			require("other-nvim").setup({
 				mappings = {
