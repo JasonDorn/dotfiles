@@ -58,7 +58,28 @@ local plugins = {
 	{ "terryma/vim-multiple-cursors", lazy = false },
 	{ "matze/vim-move", lazy = false },
 	{ "kristijanhusak/vim-create-pr", lazy = false },
-
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		priority = 1000,
+		lazy = false,
+		config = function()
+			require("catppuccin").setup({
+				flavor = "latte",
+				integrations = {
+					cmp = true,
+					gitsigns = true,
+					nvimtree = true,
+					treesitter = true,
+					notify = false,
+					mini = {
+						enabled = true,
+						indentscope_color = "",
+					},
+				},
+			})
+		end,
+	},
 	{
 		"phaazon/hop.nvim",
 		lazy = false,
