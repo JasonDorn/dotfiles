@@ -6,9 +6,10 @@ local lint = null_ls.builtins.diagnostics
 local sources = {
 
 	-- webdev stuff
-	formatting.deno_fmt, -- choosed deno for ts/js files cuz its very fast!
-	lint.deno_lint,
-	formatting.prettier.with({ filetypes = { "html", "markdown", "css" } }), -- so prettier works only on these filetypes
+	-- formatting.deno_fmt, -- choosed deno for ts/js files cuz its very fast!
+	-- lint.deno_lint,
+	-- formatting.prettier.with({ filetypes = { "html", "markdown", "css" } }), -- so prettier works only on these filetypes
+	formatting.prettier,
 
 	-- Lua
 	formatting.stylua,
@@ -18,9 +19,8 @@ local sources = {
 
 	-- ruby
 	formatting.standardrb,
-	lint.standardrb,
-	-- b.formatting.rubocop,
-	-- b.diagnostics.rubocop,
+	-- formatting.rubocop,
+	-- lint.rubocop,
 }
 
 local async_formatting = function(bufnr)
