@@ -89,6 +89,10 @@ local plugins = {
 		end,
 	},
 
+	{ "junegunn/fzf", lazy = false, run = ":call fzf#install()" },
+	{ "junegunn/fzf.vim", lazy = false },
+	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = false },
+
 	{
 		"rgroli/other.nvim",
 		ft = "ruby",
