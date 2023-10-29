@@ -54,6 +54,7 @@ local plugins = {
 	{ "tpope/vim-rails", lazy = false },
 	{ "tpope/vim-endwise", lazy = false },
 	{ "tpope/vim-surround", lazy = false },
+	{ "tpope/vim-abolish", lazy = false },
 	{ "rhysd/committia.vim", lazy = false },
 	{ "terryma/vim-multiple-cursors", lazy = false },
 	{ "matze/vim-move", lazy = false },
