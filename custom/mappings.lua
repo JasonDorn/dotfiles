@@ -10,7 +10,7 @@ M.other = {
 M.general = {
 	i = {},
 	n = {
-    [";"] = { ":", "enter command mode", opts = { nowait = true } },
+		[";"] = { ":", "enter command mode", opts = { nowait = true } },
 		["<leader><leader>"] = { "<cmd> w <CR>", "save file" },
 		-- ["<leader><leader>"] = { "<cmd> w <CR> <cmd> EslintFixAll <CR>", "save file" },
 		["gh"] = { "<C-w>h", "window left" },
@@ -20,9 +20,9 @@ M.general = {
 		["<leader>cp"] = { '<cmd>:let @+ = expand("%")<CR>', "copy file path" },
 		["<leader>b"] = { "<Nop>", "no op" },
 	},
-  v = {
-    [">"] = { ">gv", "indent"},
-  },
+	v = {
+		[">"] = { ">gv", "indent" },
+	},
 }
 
 M.test = {

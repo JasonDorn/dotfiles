@@ -60,6 +60,23 @@ local plugins = {
 	{ "matze/vim-move", lazy = false },
 	{ "kristijanhusak/vim-create-pr", lazy = false },
 	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		config = function()
+			require("copilot").setup({
+				suggestion = { enabled = false },
+				panel = { enabled = false },
+			})
+		end,
+	},
+	{
+		"zbirenbaum/copilot-cmp",
+		config = function()
+			require("copilot_cmp").setup()
+		end,
+	},
+	{
 		"catppuccin/nvim",
 		name = "catppuccin",
 		priority = 1000,
