@@ -7,18 +7,31 @@ M.other = {
 	},
 }
 
+M.vim_tmux_navigator = {
+	n = {
+		["<C-h>"] = { "<cmd>TmuxNavigateLeft<cr>", "Window left" },
+		["<C-l>"] = { "<cmd>TmuxNavigateRight<cr>", "Window right" },
+		["<C-j>"] = { "<cmd>TmuxNavigateDown<cr>", "Window down" },
+		["<C-k>"] = { "<cmd>TmuxNavigateUp<cr>", "Window up" },
+	},
+}
+
 M.general = {
 	i = {},
 	n = {
+		-- overriding base mappings
+		-- -- line numbers
+		["<leader>n"] = { "<Nop>", "Toggle line number" },
+		["<leader>rn"] = { "<Nop>", "Toggle relative number" },
+		------------------
+
 		[";"] = { ":", "enter command mode", opts = { nowait = true } },
 		["<leader><leader>"] = { "<cmd> w <CR>", "save file" },
-		-- ["<leader><leader>"] = { "<cmd> w <CR> <cmd> EslintFixAll <CR>", "save file" },
 		["gh"] = { "<C-w>h", "window left" },
 		["gl"] = { "<C-w>l", "window right" },
 		["gj"] = { "<C-w>j", "window down" },
-		["gu"] = { "<C-w>k", "window up" },
+		["gk"] = { "<C-w>k", "window up" },
 		["<leader>cp"] = { '<cmd>:let @+ = expand("%")<CR>', "copy file path" },
-		["<leader>b"] = { "<Nop>", "no op" },
 	},
 	v = {
 		[">"] = { ">gv", "indent" },
@@ -37,6 +50,13 @@ M.packer = {
 		["<leader>ps"] = { "<cmd>PackerSync<cr>", "Packer Sync" },
 		["<leader>pS"] = { "<cmd>PackerStatus<cr>", "Packer Status" },
 		["<leader>pu"] = { "<cmd>PackerUpdate<cr>", "Packer Update" },
+	},
+}
+
+M.harpoon = {
+	n = {
+		["<leader>af"] = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "Add File" },
+		["<leader>fh"] = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Toggle Harpoon Menu" },
 	},
 }
 
@@ -63,6 +83,7 @@ M.telescope = {
 					"spec/fixtures/vcr_cassettes/*",
 					"node_modules/*",
 					"yarn.lock",
+					"vendor/*",
 				})
 			),
 			"find files",

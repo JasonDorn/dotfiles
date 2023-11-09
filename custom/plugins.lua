@@ -164,6 +164,18 @@ local plugins = {
 			require("custom.configs.other")
 		end,
 	},
+	{
+		"nvim-lua/plenary.nvim",
+		lazy = false,
+	},
+	{
+		"ThePrimeagen/harpoon",
+		lazy = false,
+	},
+	{
+		"christoomey/vim-tmux-navigator",
+		lazy = false,
+	},
 
 	-- To make a plugin not be loaded
 	-- {
