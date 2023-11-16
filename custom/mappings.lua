@@ -23,6 +23,10 @@ M.general = {
 		-- -- line numbers
 		["<leader>n"] = { "<Nop>", "Toggle line number" },
 		["<leader>rn"] = { "<Nop>", "Toggle relative number" },
+		["<leader>v"] = {
+			"<Nop>",
+			"New vertical term",
+		},
 		------------------
 
 		[";"] = { ":", "enter command mode", opts = { nowait = true } },
@@ -55,8 +59,8 @@ M.packer = {
 
 M.harpoon = {
 	n = {
-		["<leader>af"] = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "Add File" },
-		["<leader>fh"] = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Toggle Harpoon Menu" },
+		["<leader>a"] = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "Add File" },
+		["<leader>h"] = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Toggle Harpoon Menu" },
 	},
 }
 
