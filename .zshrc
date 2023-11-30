@@ -125,6 +125,7 @@ alias migrate='be rake db:migrate && be rake db:test:prepare'
 alias db='v /Users/jasondorn/Developer/Homebase1/config/database.yml'
 alias unity='cd /Users/jasondorn/Developer/Unity'
 alias lvim='/Users/jasondorn/.local/bin/lvim'
+alias dotfiles='cd ~/dotfiles/'
 
 # Function to update the config/database.yml file
 update_database_yml() {
