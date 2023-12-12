@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/jasondorn/.oh-my-zsh"
+export ZSH="/Users/json/.oh-my-zsh"
 
 export EDITOR='nvim'
 # Set name of the theme to load --- if set to "random", it will
@@ -82,12 +82,12 @@ fi
 plugins=(zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
-source ~/.zsh_env_vars
+# source ~/.zsh_env_vars
 
 # Example aliases
 alias v='nvim'
-alias zshrc="lvim ~/.zshrc"
-alias vimrc="lvim ~/.vimrc"
+alias zshrc="v ~/.zshrc"
+alias vimrc="v ~/.vimrc"
 alias gco="g checkout"
 alias gf="g fetch origin"
 alias gr="g rebase origin/master"
@@ -110,65 +110,20 @@ alias gcod='git checkout develop'
 alias gaca='gA; git commit --amend --no-edit'
 alias gacfp='gA; git commit -am -no-commit; gpf'
 alias rc='bin/rails c'
-alias hb='cd ~/Developer/Homebase1'
-alias lt1='ngrok http -hostname=local-tunnel.joinhomebase.com 3000'
-alias lt2='ngrok http -hostname=local-tunnel2.joinhomebase.com 3000'
 alias logs='tail -f log/development.log'
 alias killpuma='kill -9 $(lsof -i tcp:3000 -t)'
 alias obe9='gco obe9/feature-branch'
 alias rs="pgcli 'postgresql://'"$HB_RS_PROD
-# alias rs="pgcli 'postgresql://jasondorn:H0m3b%40s31%21@homebase.coumrfl5tpqr.us-west-2.redshift.amazonaws.com:5439/homebase'"
 # alias tmux="TERM=screen-256color-bce tmux"
 alias hb.k='lsof -i:3000 | grep LISTEN | awk '\''{print $2}'\'' | xargs kill -9'
 alias sr='spring stop; spring start;'
 alias migrate='be rake db:migrate && be rake db:test:prepare'
-alias db='v /Users/jasondorn/Developer/Homebase1/config/database.yml'
-alias unity='cd /Users/jasondorn/Developer/Unity'
-alias lvim='/Users/jasondorn/.local/bin/lvim'
+alias unity='cd /Users/json/Developer/Unity'
+alias lvim='/Users/json/.local/bin/lvim'
 alias dotfiles='cd ~/dotfiles/'
 
-# Function to update the config/database.yml file
-update_database_yml() {
-  environment="$1"
-
-  case "$environment" in
-    "dev")
-      sed -i '' 's,<<: \*development_.*,<<: *development_direct,' config/database.yml
-      ;;
-    "staging")
-      sed -i '' 's,<<: \*development_.*,<<: *development_staging,' config/database.yml
-      ;;
-    "prod")
-      sed -i '' 's,<<: \*development_.*,<<: *development_prod,' config/database.yml
-      ;;
-    "clone")
-      sed -i '' 's,<<: \*development_.*,<<: *development_clone,' config/database.yml
-      ;;
-    *)
-      echo "Invalid environment: $environment"
-      return 1
-      ;;
-  esac
-}
-
-# Aliases for updating database.yml for different environments
-alias db_dev="update_database_yml dev"
-alias db_staging="update_database_yml staging && hops db connect -e staging -s homebase1"
-alias db_prod="update_database_yml prod && hops db connect -e production -s homebase1"
-alias db_clone="update_database_yml clone && hops db connect -e clone -s homebase1"
-
-function assets() {
-  cd hb;
-  cd client;
-  yarn run hot-assets;
-}
-
-function rollout() {
-  be rake "rollouts:generate[${1}]"
-}
-
 export PGCLIENTENCODING=utf-8
-export PATH="$PATH:/Users/jasondorn/.dotnet/tools"
+export PATH="$PATH:/Users/json/.dotnet/tools"
 
 # path+=('/Library/Frameworks/Mono.framework/Versions/Current/bin')
 
