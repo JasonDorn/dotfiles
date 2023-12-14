@@ -116,6 +116,7 @@ alias killpuma='kill -9 $(lsof -i tcp:3000 -t)'
 alias sr='spring stop; spring start;'
 alias migrate='be rake db:migrate && be rake db:test:prepare'
 alias dotfiles='cd ~/dotfiles/'
+alias Developer='cd ~/Developer'
 
 export PGCLIENTENCODING=utf-8
 export PATH="$PATH:/Users/json/.dotnet/tools"
