@@ -6,5 +6,3 @@
 [core]
 	editor = nvim
 	excludesfile = /Users/jasondorn/.gitignore_global
-[alias]
-	jira = hops deploy sha -e demo4 6e897712d697fe1c321f13dbd2b30a71a2bd95f2 -s homebase1 jira

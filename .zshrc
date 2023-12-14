@@ -105,21 +105,16 @@ alias g="git"
 alias gri='g rebase -i origin/develop'
 alias be="bundle exec"
 alias gbDA="git branch | grep -v "develop" | xargs git branch -D"
-alias bi="bundle install && git checkout -f && git clean -df"
+alias bi="bundle install"
 alias gcod='git checkout develop'
 alias gaca='gA; git commit --amend --no-edit'
 alias gacfp='gA; git commit -am -no-commit; gpf'
 alias rc='bin/rails c'
 alias logs='tail -f log/development.log'
 alias killpuma='kill -9 $(lsof -i tcp:3000 -t)'
-alias obe9='gco obe9/feature-branch'
-alias rs="pgcli 'postgresql://'"$HB_RS_PROD
 # alias tmux="TERM=screen-256color-bce tmux"
-alias hb.k='lsof -i:3000 | grep LISTEN | awk '\''{print $2}'\'' | xargs kill -9'
 alias sr='spring stop; spring start;'
 alias migrate='be rake db:migrate && be rake db:test:prepare'
-alias unity='cd /Users/json/Developer/Unity'
-alias lvim='/Users/json/.local/bin/lvim'
 alias dotfiles='cd ~/dotfiles/'
 
 export PGCLIENTENCODING=utf-8
