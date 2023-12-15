@@ -14,6 +14,12 @@ M.vim_tmux_navigator = {
 		["<C-j>"] = { "<cmd>TmuxNavigateDown<cr>", "Window down" },
 		["<C-k>"] = { "<cmd>TmuxNavigateUp<cr>", "Window up" },
 	},
+	t = {
+		["<C-h>"] = { "<C-\\><C-N><C-w>h", "Window left (terminal mode)" },
+		["<C-l>"] = { "<C-\\><C-N><C-w>l", "Window right (terminal mode)" },
+		["<C-j>"] = { "<C-\\><C-N><C-w>j", "Window down (terminal mode)" },
+		["<C-k>"] = { "<C-\\><C-N><C-w>k", "Window up (terminal mode)" },
+	},
 }
 
 M.general = {
