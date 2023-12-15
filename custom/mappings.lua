@@ -19,6 +19,7 @@ M.vim_tmux_navigator = {
 		["<C-l>"] = { "<C-\\><C-N><C-w>l", "Window right (terminal mode)" },
 		["<C-j>"] = { "<C-\\><C-N><C-w>j", "Window down (terminal mode)" },
 		["<C-k>"] = { "<C-\\><C-N><C-w>k", "Window up (terminal mode)" },
+		["<Esc>"] = { "<C-\\><C-N>", "Exit terminal mode" }, -- Add this line
 	},
 }
 
