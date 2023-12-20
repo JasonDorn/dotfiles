@@ -112,11 +112,10 @@ alias gacfp='gA; git commit -am -no-commit; gpf'
 alias rc='bin/rails c'
 alias logs='tail -f log/development.log'
 alias killpuma='kill -9 $(lsof -i tcp:3000 -t)'
-# alias tmux="TERM=screen-256color-bce tmux"
 alias sr='spring stop; spring start;'
 alias migrate='be rake db:migrate && be rake db:test:prepare'
 alias dotfiles='cd ~/dotfiles/'
-alias Developer='cd ~/Developer'
+alias developer='cd ~/Developer'
 
 export PGCLIENTENCODING=utf-8
 export PATH="$PATH:/Users/json/.dotnet/tools"
@@ -129,9 +128,8 @@ export PATH="$PATH:/Users/json/.dotnet/tools"
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 export NVM_DIR="$HOME/.nvm"
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # this is necessary so that rbenv and brew packages get priority.
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -141,4 +139,5 @@ export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+source ~/.work_zshrc.zsh
+# export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
