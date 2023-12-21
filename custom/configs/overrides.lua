@@ -14,6 +14,7 @@ M.treesitter = {
 		"markdown_inline",
 		"ruby",
 		"json",
+		"python",
 	},
 	indent = {
 		enable = true,
@@ -38,6 +39,7 @@ M.mason = {
 		"solargraph",
 		"rubocop",
 		"standardrb",
+		"black",
 
 		-- c/cpp stuff
 		"clangd",

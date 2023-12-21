@@ -10,6 +10,11 @@ local sources = {
 	-- lint.deno_lint,
 	-- formatting.prettier.with({ filetypes = { "html", "markdown", "css" } }), -- so prettier works only on these filetypes
 	formatting.prettier,
+	lint.eslint_d,
+
+	-- Python
+	formatting.black,
+	lint.flake8,
 
 	-- Lua
 	formatting.stylua,
