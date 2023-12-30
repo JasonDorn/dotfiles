@@ -47,7 +47,7 @@ local plugins = {
 		end,
 	},
 
-	{ "vim-test/vim-test", ft = "ruby" },
+	{ "vim-test/vim-test", lazy = false },
 	{ "tpope/vim-repeat", lazy = false },
 	{ "tpope/vim-rhubarb", lazy = false },
 	{ "tpope/vim-fugitive", lazy = false },

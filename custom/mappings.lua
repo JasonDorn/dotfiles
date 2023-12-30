@@ -51,8 +51,8 @@ M.general = {
 
 M.test = {
 	n = {
-		["<leader>t"] = { "<cmd>TestNearest -strategy=harpoon --format documentation<cr>", "test nearest" },
-		["<leader>T"] = { "<cmd>TestFile -strategy=harpoon --format documentation<cr>", "test file" },
+		["<leader>t"] = { "<cmd>TestNearest -strategy=harpoon<cr>", "test nearest" },
+		["<leader>T"] = { "<cmd>TestFile -strategy=harpoon<cr>", "test file" },
 	},
 }
 
