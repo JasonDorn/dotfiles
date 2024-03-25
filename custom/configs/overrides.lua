@@ -39,7 +39,11 @@ M.mason = {
 		"solargraph",
 		"rubocop",
 		"standardrb",
+
+		-- python stuff
 		"black",
+		"pyright",
+		"flake8",
 
 		-- c/cpp stuff
 		"clangd",

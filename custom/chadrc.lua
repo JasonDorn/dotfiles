@@ -13,6 +13,9 @@ M.ui = {
 
 	nvdash = {
 		load_on_startup = true,
+		header = {
+			"Ready Player One",
+		},
 	},
 }
 

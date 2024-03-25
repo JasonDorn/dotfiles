@@ -135,9 +135,11 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="$HOME/.rbenv/bin:$PATH"
 [[ -n $(which rbenv) ]] && eval "$(rbenv init - --no-rehash)"
 
+export PYTHONBREAKPOINT=ipdb.set_trace
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
+eval "$(direnv hook zsh)"
+source ~/.work_zshrc.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source ~/.work_zshrc.zsh
 # export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"

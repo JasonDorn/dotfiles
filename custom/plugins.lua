@@ -47,7 +47,14 @@ local plugins = {
 		end,
 	},
 
-	{ "vim-test/vim-test", lazy = false },
+	{
+		"vim-test/vim-test",
+		lazy = false,
+		config = function()
+			vim.g["test#python#runner"] = "djangotest"
+			vim.g["test#python#djangotest#options"] = "--keepdb"
+		end,
+	},
 	{ "tpope/vim-repeat", lazy = false },
 	{ "tpope/vim-rhubarb", lazy = false },
 	{ "tpope/vim-fugitive", lazy = false },
