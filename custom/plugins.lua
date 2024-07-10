@@ -183,7 +183,12 @@ local plugins = {
 		"christoomey/vim-tmux-navigator",
 		lazy = false,
 	},
-	{ "averms/black-nvim", ft = "python" },
+	{
+		"chrisbra/csv.vim",
+		lazy = false,
+	},
+
+	-- { "averms/black-nvim", ft = "python" },
 
 	-- To make a plugin not be loaded
 	-- {

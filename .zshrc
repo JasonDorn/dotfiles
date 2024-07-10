@@ -101,7 +101,6 @@ alias gc="g commit -v"
 alias gp="g push"
 alias gpu="g push -u origin HEAD"
 alias gup='git pull --rebase'
-alias g="git"
 alias gri='g rebase -i origin/development'
 alias be="bundle exec"
 alias gbDA="git branch | grep -v "development" | xargs git branch -D"
@@ -143,3 +142,5 @@ source ~/.work_zshrc.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@12/bin:$PATH"
+export PATH="/opt/homebrew/opt/libxml2/bin:$PATH"

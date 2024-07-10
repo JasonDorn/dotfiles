@@ -42,7 +42,7 @@ M.general = {
 		["gl"] = { "<C-w>l", "window right" },
 		["gj"] = { "<C-w>j", "window down" },
 		["gk"] = { "<C-w>k", "window up" },
-		["<leader>cp"] = { '<cmd>:let @+ = expand("%")<CR>', "copy file path" },
+		["<leader>cp"] = { '<cmd>:let @+ = substitute(expand("%:p:~:.") , "/", ".", "g")<CR>', "copy file path" },
 	},
 	v = {
 		[">"] = { ">gv", "indent" },
