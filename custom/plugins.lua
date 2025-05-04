@@ -67,19 +67,32 @@ local plugins = {
 	},
 	{
 		"neovim/nvim-lspconfig",
-		dependencies = {
-			-- format & linting
-			{
-				"jose-elias-alvarez/null-ls.nvim",
-				config = function()
-					require("custom.configs.null-ls")
-				end,
-			},
-		},
+		-- null-ls dependency removed
 		config = function()
 			require("plugins.configs.lspconfig")
 			require("custom.configs.lspconfig")
 		end, -- Override to setup mason-lspconfig
+	},
+
+	-- Add conform.nvim for formatting
+	{
+		"stevearc/conform.nvim",
+		event = { "BufWritePre" }, -- Run formatter before saving
+		cmd = { "ConformInfo" },
+		opts = {}, -- We'll configure this in a separate file
+		config = function()
+			require("custom.configs.conform") -- Create this new file
+		end,
+	},
+
+	-- Add nvim-lint for linting
+	{
+		"mfussenegger/nvim-lint",
+		event = { "BufWritePost", "BufReadPost", "InsertLeave" }, -- When to run the linter
+		opts = {}, -- We'll configure this in a separate file
+		config = function()
+			require("custom.configs.nvim-lint") -- Create this new file
+		end,
 	},
 
 	-- override plugin configs
