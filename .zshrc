@@ -139,6 +139,10 @@ export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
 eval "$(direnv hook zsh)"
 source ~/.work_zshrc.zsh
+alias pcloneshell="POSTGRES_DB=$PEQUITY_CLONE_DB POSTGRES_USER=$PEQUITY_CLONE_USER POSTGRES_PASSWORD=$PEQUITY_CLONE_PGPASSWORD HOST=$PEQUITY_CLONE_HOST  python manage.py shell_plus"
+alias pcloneserver="POSTGRES_DB=$PEQUITY_CLONE_DB POSTGRES_USER=$PEQUITY_CLONE_USER POSTGRES_PASSWORD=$PEQUITY_CLONE_PGPASSWORD HOST=$PEQUITY_CLONE_HOST  python manage.py runserver"
+# from django.db import connection, connections
+# connections["default"].set_schema("interactivebrokers")
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"

@@ -41,7 +41,7 @@ M.mason = {
 		"standardrb",
 
 		-- python stuff
-		"black",
+		"ruff",
 		"pyright",
 		"flake8",
 
