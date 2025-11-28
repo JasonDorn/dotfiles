@@ -23,7 +23,22 @@ return {
         "lua",
         "json",
         "yaml",
+        "bash",
+        "css",
+        "html",
+        "markdown",
+        "markdown_inline",
+        "regex",
+        "toml",
+        "vim",
+        "vimdoc",
       })
+      opts.highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+      }
+      opts.indent = { enable = true }
+      opts.incremental_selection = { enable = true }
     end,
   },
   {
