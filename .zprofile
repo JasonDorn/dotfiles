@@ -1,4 +1,2 @@
-
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
+# Homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"

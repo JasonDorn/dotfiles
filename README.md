@@ -161,3 +161,74 @@ export PEQUITY_CLONE_HOST="..."
 ```
 
 **NEVER** commit the `~/.work_zshrc.zsh` file to version control!
+
+## Fresh Setup
+
+### Neovim Configurations Available
+
+1. **nvim** (NvChad) - Original configuration with NvChad v2.5
+2. **nvim-lazyvim** - Previous LazyVim experiments
+3. **nvim-fresh** - **NEW!** Clean, optimized LazyVim setup
+
+### Using the Fresh LazyVim Config
+
+```bash
+ln -sf ~/dotfiles/config/nvim-fresh ~/.config/nvim
+nvim
+```
+
+The fresh config includes:
+- Python/Django support (Pyright, Ruff)
+- Git integration (GitSigns, LazyGit)
+- Modern UI (Tokyo Night theme)
+- Optimized keymaps for development
+- Telescope file finder
+- Neo-tree file explorer
+
+### Switching Between Configs
+
+```bash
+# Use fresh LazyVim
+ln -sf ~/dotfiles/config/nvim-fresh ~/.config/nvim
+
+# Use original NvChad
+ln -sf ~/dotfiles/config/nvim ~/.config/nvim
+
+# Use old LazyVim experiments
+ln -sf ~/dotfiles/config/nvim-lazyvim ~/.config/nvim
+```
+
+### Kitty Terminal Setup
+
+The Kitty config includes:
+- Tokyo Night color scheme matching Neovim
+- JetBrains Mono font
+- Optimized performance settings
+- macOS-friendly keybindings
+- Background opacity for modern look
+
+#### Setting up Cmd+` Hotkey for Kitty
+
+**Option 1: macOS Keyboard Shortcuts (Easiest)**
+1. Open **System Settings → Keyboard → Keyboard Shortcuts**
+2. Click **App Shortcuts** → **+** button
+3. Application: **Kitty.app**
+4. Menu Title: **New OS Window**
+5. Keyboard Shortcut: **Cmd+`**
+6. Click **Add**
+
+**Option 2: Hammerspoon** (if you use it):
+```lua
+hs.hotkey.bind({"cmd"}, "`", function()
+  local kitty = hs.application.find("Kitty")
+  if kitty then
+    if kitty:isFrontmost() then
+      kitty:hide()
+    else
+      kitty:activate()
+    end
+  else
+    hs.application.launchOrFocus("Kitty")
+  end
+end)
+```
