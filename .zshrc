@@ -1,3 +1,4 @@
+export ITERM2_SHELL_INTEGRATION_NO_YANK_PROMPT=1
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -79,7 +80,8 @@ fi
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git zsh-autosuggestions rails ruby rake rbenv zsh-syntax-highlighting)
-plugins=(zsh-autosuggestions zsh-syntax-highlighting)
+# plugins=(zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 # source ~/.zsh_env_vars
@@ -141,6 +143,7 @@ eval "$(direnv hook zsh)"
 source ~/.work_zshrc.zsh
 alias pcloneshell="POSTGRES_DB=$PEQUITY_CLONE_DB POSTGRES_USER=$PEQUITY_CLONE_USER POSTGRES_PASSWORD=$PEQUITY_CLONE_PGPASSWORD HOST=$PEQUITY_CLONE_HOST  python manage.py shell_plus"
 alias pcloneserver="POSTGRES_DB=$PEQUITY_CLONE_DB POSTGRES_USER=$PEQUITY_CLONE_USER POSTGRES_PASSWORD=$PEQUITY_CLONE_PGPASSWORD HOST=$PEQUITY_CLONE_HOST  python manage.py runserver"
+alias ruff-staged='git diff --name-only --cached --diff-filter=ACM | grep "\.py$" | xargs ruff format'
 # from django.db import connection, connections
 # connections["default"].set_schema("interactivebrokers")
 
@@ -148,3 +151,4 @@ alias pcloneserver="POSTGRES_DB=$PEQUITY_CLONE_DB POSTGRES_USER=$PEQUITY_CLONE_U
 # export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 export PATH="/opt/homebrew/opt/postgresql@12/bin:$PATH"
 export PATH="/opt/homebrew/opt/libxml2/bin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
