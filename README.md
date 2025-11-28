@@ -138,3 +138,26 @@ git push
 ## License
 
 Personal configuration files - use at your own risk!
+
+## Security Notes
+
+### Sensitive Information
+
+This repository is safe to share publicly. Sensitive information like API keys, passwords, and work-specific configurations are kept in separate files that are NOT tracked in git:
+
+- `~/.work_zshrc.zsh` - Work-specific environment variables and credentials
+- The `.gitignore` is configured to exclude all work-related, credential, and secret files
+
+### Work Configuration
+
+The `.zshrc` sources `~/.work_zshrc.zsh` which should contain:
+```bash
+# Work-specific environment variables
+export PEQUITY_CLONE_DB="..."
+export PEQUITY_CLONE_USER="..."
+export PEQUITY_CLONE_PGPASSWORD="..."
+export PEQUITY_CLONE_HOST="..."
+# Add other work-specific configs here
+```
+
+**NEVER** commit the `~/.work_zshrc.zsh` file to version control!
