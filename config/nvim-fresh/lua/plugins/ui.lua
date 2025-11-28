@@ -28,20 +28,45 @@ return {
         },
       },
       overrides = function(colors)
-        local theme = colors.theme
         return {
+          -- Variables
           ["@variable"] = { fg = colors.palette.fujiWhite },
-          ["@variable.builtin"] = { fg = colors.palette.oniViolet },
+          ["@variable.builtin"] = { fg = colors.palette.oniViolet, italic = true },
+          ["@variable.parameter"] = { fg = colors.palette.peachRed },
+
+          -- Functions
           ["@function"] = { fg = colors.palette.crystalBlue, bold = true },
+          ["@function.builtin"] = { fg = colors.palette.crystalBlue },
           ["@function.call"] = { fg = colors.palette.crystalBlue },
-          ["@keyword"] = { fg = colors.palette.oniViolet, bold = true },
-          ["@keyword.function"] = { fg = colors.palette.oniViolet },
+          ["@function.method"] = { fg = colors.palette.crystalBlue },
+
+          -- Keywords
+          ["@keyword"] = { fg = colors.palette.oniViolet, bold = true, italic = true },
+          ["@keyword.function"] = { fg = colors.palette.oniViolet, bold = true },
+          ["@keyword.operator"] = { fg = colors.palette.boatYellow2 },
+          ["@keyword.return"] = { fg = colors.palette.oniViolet, bold = true },
+
+          -- Strings and constants
           ["@string"] = { fg = colors.palette.springGreen },
           ["@number"] = { fg = colors.palette.sakuraPink },
-          ["@boolean"] = { fg = colors.palette.surimiOrange },
+          ["@boolean"] = { fg = colors.palette.surimiOrange, bold = true },
+          ["@constant"] = { fg = colors.palette.surimiOrange },
+          ["@constant.builtin"] = { fg = colors.palette.surimiOrange, bold = true },
+
+          -- Types
           ["@type"] = { fg = colors.palette.waveAqua2, bold = true },
-          ["@parameter"] = { fg = colors.palette.peachRed },
+          ["@type.builtin"] = { fg = colors.palette.waveAqua2 },
+
+          -- Properties and fields
           ["@property"] = { fg = colors.palette.carpYellow },
+          ["@field"] = { fg = colors.palette.carpYellow },
+
+          -- Operators
+          ["@operator"] = { fg = colors.palette.boatYellow2 },
+
+          -- Punctuation
+          ["@punctuation.bracket"] = { fg = colors.palette.springViolet2 },
+          ["@punctuation.delimiter"] = { fg = colors.palette.springViolet2 },
         }
       end,
       theme = "wave",
