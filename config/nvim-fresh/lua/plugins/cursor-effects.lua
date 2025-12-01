@@ -1,29 +1,4 @@
 return {
-  -- Specs.nvim - Pulse effect on cursor jumps
-  {
-    "edluffy/specs.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("specs").setup({
-        show_jumps = true,
-        min_jump = 10, -- Only show for jumps of 10+ lines
-        popup = {
-          delay_ms = 0,
-          inc_ms = 5,
-          blend = 10,
-          width = 20,
-          winhl = "PMenu",
-          fader = require("specs").pulse_fader,
-          resizer = require("specs").shrink_resizer,
-        },
-        ignore_filetypes = {},
-        ignore_buftypes = {
-          nofile = true,
-        },
-      })
-    end,
-  },
-
   -- Mini.animate - Smooth scrolling and animations
   {
     "nvim-mini/mini.animate",
