@@ -18,6 +18,11 @@ opt.termguicolors = true
 
 vim.g.autoformat = true
 
+-- Performance: disable some providers for faster startup
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_node_provider = 0
+
 -- Disable semantic tokens that can override treesitter colors
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
