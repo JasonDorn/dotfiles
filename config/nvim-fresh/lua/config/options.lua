@@ -11,7 +11,8 @@ opt.undofile = true
 opt.scrolloff = 8
 opt.signcolumn = "yes"
 opt.updatetime = 50
-opt.timeoutlen = 300
+opt.timeoutlen = 200
+opt.ttimeoutlen = 0
 opt.spelllang = { "en" }
 opt.termguicolors = true
 
