@@ -1,32 +1,5 @@
 return {
-  -- Smear cursor - Creates a trailing effect when cursor moves
-  {
-    "sphrase/smear-cursor.nvim",
-    opts = {
-      -- Smear cursor color. Defaults to Cursor GUI color
-      cursor_color = "#d27e99",
-
-      -- Background color. Defaults to Normal GUI background color
-      normal_bg = "#1f1f28",
-
-      -- Smear cursor when switching buffers or windows
-      smear_between_buffers = true,
-
-      -- Smear cursor when moving within line or to neighbor lines
-      smear_between_neighbor_lines = true,
-
-      -- Use floating windows to display smears outside buffers.
-      use_floating_windows = true,
-
-      -- Set to `true` if your font supports legacy computing symbols (block unicode symbols).
-      legacy_computing_symbols_support = false,
-
-      -- Attempt to hide the real cursor when smearing
-      hide_target_hack = true,
-    },
-  },
-
-  -- Specs.nvim - Pulse effect on cursor jumps (complements smear-cursor)
+  -- Specs.nvim - Pulse effect on cursor jumps
   {
     "edluffy/specs.nvim",
     event = "VeryLazy",
@@ -53,7 +26,7 @@ return {
 
   -- Mini.animate - Smooth scrolling and animations
   {
-    "echasnovski/mini.animate",
+    "nvim-mini/mini.animate",
     event = "VeryLazy",
     config = function()
       local animate = require("mini.animate")
