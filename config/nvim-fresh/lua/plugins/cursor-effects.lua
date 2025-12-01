@@ -13,39 +13,4 @@ return {
       hide_target_hack = true,
     },
   },
-
-  -- Mini.animate - Smooth scrolling and animations
-  {
-    "nvim-mini/mini.animate",
-    event = "VeryLazy",
-    config = function()
-      local animate = require("mini.animate")
-      animate.setup({
-        -- Cursor path - disabled since we're using smear-cursor
-        cursor = {
-          enable = false,
-        },
-        -- Vertical scroll
-        scroll = {
-          enable = true,
-          timing = animate.gen_timing.linear({ duration = 150, unit = "total" }),
-        },
-        -- Window resize
-        resize = {
-          enable = true,
-          timing = animate.gen_timing.linear({ duration = 50, unit = "total" }),
-        },
-        -- Window open/close
-        open = {
-          enable = true,
-          timing = animate.gen_timing.linear({ duration = 150, unit = "total" }),
-        },
-        close = {
-          enable = true,
-          timing = animate.gen_timing.linear({ duration = 150, unit = "total" }),
-        },
-      })
-    end,
-  },
-
 }
