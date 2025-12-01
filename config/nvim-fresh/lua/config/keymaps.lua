@@ -29,6 +29,10 @@ keymap("n", "N", "Nzzzv", { desc = "Previous search result centered" })
 keymap("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
 keymap("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
+-- Clipboard
 keymap("n", "<leader>y", '"+y', { desc = "Yank to system clipboard" })
 keymap("v", "<leader>y", '"+y', { desc = "Yank to system clipboard" })
 keymap("n", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
+
+-- Telescope
+keymap("n", "<leader>fw", "<cmd>Telescope live_grep<cr>", { desc = "Find word (live grep)" })
