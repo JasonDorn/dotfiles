@@ -35,6 +35,7 @@ backup_file "$HOME/.gitconfig"
 backup_file "$HOME/.tmux.conf"
 backup_file "$HOME/.config/nvim"
 backup_file "$HOME/.config/kitty"
+backup_file "$HOME/.hammerspoon"
 
 # Create symlinks
 create_symlink() {
@@ -57,6 +58,7 @@ create_symlink "$DOTFILES_DIR/.zprofile" "$HOME/.zprofile"
 create_symlink "$DOTFILES_DIR/.gitconfig" "$HOME/.gitconfig"
 create_symlink "$DOTFILES_DIR/.tmux.conf" "$HOME/.tmux.conf"
 create_symlink "$DOTFILES_DIR/config/kitty" "$HOME/.config/kitty"
+create_symlink "$DOTFILES_DIR/config/hammerspoon" "$HOME/.hammerspoon"
 
 # Ask which Neovim config to use
 echo ""
