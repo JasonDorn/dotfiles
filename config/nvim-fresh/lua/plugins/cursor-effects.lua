@@ -1,30 +1,22 @@
 return {
-  -- Smear cursor - Creates a trailing effect when cursor moves
-  {
-    "sphrase/smear-cursor.nvim",
-    event = "VeryLazy",
-    opts = {
-      cursor_color = "#d27e99",
-      normal_bg = "#1f1f28",
-      smear_between_buffers = true,
-      smear_between_neighbor_lines = true,
-      use_floating_windows = true,
-      legacy_computing_symbols_support = false,
-      hide_target_hack = true,
-    },
-  },
-
-  -- Mini.animate - Smooth scrolling and animations
+  -- Mini.animate - Smooth scrolling and animations with cursor trail effect
   {
     "nvim-mini/mini.animate",
     event = "VeryLazy",
     config = function()
       local animate = require("mini.animate")
       animate.setup({
-        -- Cursor path
+        -- Cursor path - creates a trailing/smear effect similar to smear-cursor
         cursor = {
           enable = true,
-          timing = animate.gen_timing.linear({ duration = 80, unit = "total" }),
+          -- Use exponential for smoother trailing effect
+          timing = animate.gen_timing.exponential({ easing = "out", duration = 120, unit = "total" }),
+          -- Path style - 'line' gives a smear-like effect
+          path = animate.gen_path.line({
+            predicate = function()
+              return true
+            end,
+          }),
         },
         -- Vertical scroll
         scroll = {
