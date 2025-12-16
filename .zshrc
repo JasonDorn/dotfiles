@@ -58,9 +58,8 @@ alias pcloneshell="POSTGRES_DB=$PEQUITY_CLONE_DB POSTGRES_USER=$PEQUITY_CLONE_US
 alias pcloneserver="POSTGRES_DB=$PEQUITY_CLONE_DB POSTGRES_USER=$PEQUITY_CLONE_USER POSTGRES_PASSWORD=$PEQUITY_CLONE_PGPASSWORD HOST=$PEQUITY_CLONE_HOST python manage.py runserver"
 alias ruff-staged='git diff --name-only --cached --diff-filter=ACM | grep "\.py$" | xargs ruff format'
 
-# Neovim config switcher
-alias nvim-chad='NVIM_APPNAME=nvim-nvchad-current-backup nvim'
-alias nvim-lazy='NVIM_APPNAME=nvim-lazyvim nvim'
+# Neovim - using LazyVim
+# Old configs backed up in nvim-nvchad-backup and nvim-lazyvim-backup
 
 # Environment variables
 export PYTHONBREAKPOINT=ipdb.set_trace
