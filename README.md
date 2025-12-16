@@ -1,133 +1,157 @@
 # Jason's Dotfiles
 
-Personal development environment configuration files.
+Complete development environment setup for macOS. One command to set up any new machine exactly like your current setup.
 
-## Contents
-
-- **Shell**: Zsh configuration (.zshrc, .zprofile)
-- **Terminal**: Kitty terminal config, iTerm2 settings
-- **Editor**: Neovim with NvChad and LazyVim configurations
-- **Multiplexer**: Tmux configuration
-- **Git**: Global git configuration
-
-## Setup
-
-### Quick Setup (New Machine)
+## 🚀 Quick Setup (New Machine)
 
 ```bash
+# Clone the repo
 git clone git@github.com:JasonDorn/dotfiles.git ~/dotfiles
 cd ~/dotfiles
+
+# Run the installer - it handles everything!
 ./install.sh
 ```
 
-### Manual Setup
+The installer automatically:
+- ✅ Installs Homebrew (if missing)
+- ✅ Installs Oh My Zsh + Powerlevel10k theme
+- ✅ Installs all essential CLI tools (ripgrep, fzf, lazygit, neovim, etc.)
+- ✅ Sets up rbenv, pyenv, nvm, direnv
+- ✅ Creates all necessary symlinks
+- ✅ Backs up existing configs safely
+- ✅ Creates work config template
 
-1. Clone this repository:
-   ```bash
-   git clone git@github.com:JasonDorn/dotfiles.git ~/dotfiles
-   ```
+## 📦 What's Included
 
-2. Create symlinks:
-   ```bash
-   ln -sf ~/dotfiles/.zshrc ~/.zshrc
-   ln -sf ~/dotfiles/.zprofile ~/.zprofile
-   ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
-   ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
-   ln -sf ~/dotfiles/config/kitty ~/.config/kitty
-   ```
+- **Shell**: Zsh with Oh My Zsh + Powerlevel10k theme
+- **Terminal**: Kitty terminal with Tokyo Night theme
+- **Editor**: Neovim with LazyVim (Python/Django optimized)
+- **Multiplexer**: Tmux configuration
+- **Window Manager**: Hammerspoon (Cmd+` hotkey for Kitty)
+- **Git**: Global git configuration
+- **Tools**: ripgrep, fzf, lazygit, bat, eza, fd, zoxide
 
-3. Choose Neovim config:
-   ```bash
-   # For NvChad
-   ln -sf ~/dotfiles/config/nvim ~/.config/nvim
-   
-   # For LazyVim
-   ln -sf ~/dotfiles/config/nvim-lazyvim ~/.config/nvim
-   ```
-
-## Neovim Configurations
-
-This repo includes two Neovim configurations:
-
-### NvChad (config/nvim)
-Current active configuration with custom plugins and settings.
-
-### LazyVim (config/nvim-lazyvim)
-Alternative configuration for testing.
-
-### Switching Between Configs
-
-```bash
-# Use NvChad
-NVIM_APPNAME=nvim nvim
-
-# Use LazyVim
-NVIM_APPNAME=nvim-lazyvim nvim
-
-# Or create aliases in .zshrc:
-alias nvim-chad="NVIM_APPNAME=nvim nvim"
-alias nvim-lazy="NVIM_APPNAME=nvim-lazyvim nvim"
-```
-
-## iTerm2 Configuration
-
-Import the iTerm2 profile:
-1. Open iTerm2
-2. Go to Preferences > Profiles
-3. Click "Other Actions" > "Import JSON Profiles"
-4. Select `iterm.json` or import `com.googlecode.iterm2.plist`
-
-## Required Tools
-
-- [Neovim](https://neovim.io/) >= 0.9.0
-- [Kitty](https://sw.kovidgoyal.net/kitty/) terminal
-- [Homebrew](https://brew.sh/) (macOS)
-- Zsh shell
-
-### Essential CLI Tools
-
-```bash
-brew install \
-  ripgrep \
-  fd \
-  fzf \
-  lazygit \
-  tree \
-  bat \
-  eza \
-  zoxide \
-  starship
-```
-
-## Structure
+## 📁 Structure
 
 ```
 dotfiles/
-├── .zshrc              # Zsh configuration
-├── .zprofile           # Zsh profile
-├── .gitconfig          # Git global config
-├── .tmux.conf          # Tmux configuration
+├── .zshrc                          # Zsh configuration with aliases
+├── .zprofile                       # Zsh profile
+├── .gitconfig                      # Git global config
+├── .tmux.conf                      # Tmux configuration
+├── .work_zshrc.zsh.template        # Template for work-specific secrets
+├── install.sh                      # Automated installer
 ├── config/
-│   ├── kitty/          # Kitty terminal config
-│   ├── nvim/           # NvChad configuration
-│   └── nvim-lazyvim/   # LazyVim configuration
-├── custom/             # Legacy NvChad custom configs
-├── iterm.json          # iTerm2 JSON profile
-└── com.googlecode.iterm2.plist  # iTerm2 plist
+│   ├── kitty/                      # Kitty terminal config
+│   ├── hammerspoon/                # Hammerspoon window manager
+│   ├── nvim/                       # Neovim LazyVim config
+│   ├── nvim-nvchad-backup/         # Old NvChad config (backup)
+│   └── nvim-lazyvim-backup/        # Old LazyVim experiments (backup)
+├── iterm.json                      # iTerm2 profile (legacy)
+└── README.md                       # This file
 ```
 
-## Maintenance
+## 🛠️ Post-Installation
 
-### Updating Dotfiles
+After running `./install.sh`, do the following:
+
+1. **Restart your terminal** or run `source ~/.zshrc`
+
+2. **Configure Powerlevel10k** (first time only):
+   ```bash
+   p10k configure
+   ```
+
+3. **Open Neovim** (plugins auto-install on first launch):
+   ```bash
+   nvim
+   ```
+
+4. **Install GUI apps** (optional):
+   ```bash
+   # Kitty terminal
+   brew install --cask kitty
+
+   # Hammerspoon window manager
+   brew install --cask hammerspoon
+
+   # Font for terminal
+   brew install --cask font-jetbrains-mono-nerd-font
+   ```
+
+5. **Set up work-specific configs**:
+   ```bash
+   # Edit the work config file created from template
+   nvim ~/.work_zshrc.zsh
+   ```
+   Add your work-specific environment variables, API keys, database credentials, etc.
+
+6. **Install language runtimes** (as needed):
+   ```bash
+   # Ruby
+   rbenv install 3.2.0
+   rbenv global 3.2.0
+
+   # Python
+   pyenv install 3.11.0
+   pyenv global 3.11.0
+
+   # Node.js
+   nvm install --lts
+   nvm use --lts
+   ```
+
+## 🎨 Neovim Configuration
+
+The Neovim setup uses **LazyVim** with:
+- Python/Django support (Pyright LSP, Ruff formatter)
+- Git integration (GitSigns, LazyGit, Diffview)
+- Modern UI (Tokyo Night theme, which-key, telescope)
+- Optimized keymaps and productivity plugins
+- Motion enhancements (hop.nvim, flash.nvim)
+- Testing support (neotest)
+
+First launch will automatically install all plugins via Lazy.nvim.
+
+## 🔐 Security & Work Configs
+
+**Sensitive data is NOT tracked in git!**
+
+Work-specific configurations (API keys, database credentials, etc.) should be placed in:
+```bash
+~/.work_zshrc.zsh
+```
+
+This file is:
+- Created from `.work_zshrc.zsh.template` during installation
+- Automatically sourced by `.zshrc`
+- Excluded by `.gitignore`
+- **NEVER** committed to version control
+
+### Example work config:
+```bash
+# ~/.work_zshrc.zsh
+export WORK_DB="production_db"
+export WORK_API_KEY="secret_key_here"
+export AWS_ACCESS_KEY_ID="your_key"
+```
+
+## 🔄 Updating Your Dotfiles
+
+When you make changes to your configs, sync them back to the repo:
 
 ```bash
 cd ~/dotfiles
-# Copy latest configs
+
+# Copy updated configs from home
 cp ~/.zshrc .
 cp ~/.zprofile .
+cp ~/.p10k.zsh .  # if you customized it
 cp ~/.config/kitty/kitty.conf config/kitty/
-rsync -av --exclude='.git' ~/.config/nvim/ config/nvim/
-rsync -av --exclude='.git' ~/.config/nvim-lazyvim/ config/nvim-lazyvim/
+
+# Sync Neovim config (excluding git metadata)
+rsync -av --exclude='.git' --exclude='lazy-lock.json' ~/.config/nvim/ config/nvim/
 
 # Commit and push
 git add -A
@@ -135,100 +159,65 @@ git commit -m "Update configurations"
 git push
 ```
 
-## License
+## 🎯 Key Aliases & Commands
+
+### Git
+```bash
+g          # git
+gst        # git status
+gco        # git checkout
+gA         # git add -A
+gc         # git commit -v
+gp         # git push
+gpu        # git push -u origin HEAD
+```
+
+### Navigation
+```bash
+v          # nvim
+dotfiles   # cd ~/dotfiles
+developer  # cd ~/Developer
+```
+
+### Python/Django
+```bash
+pcloneshell   # Django shell with production DB clone
+pcloneserver  # Django runserver with production DB clone
+ruff-staged   # Format staged Python files with Ruff
+```
+
+## 📱 Hammerspoon Hotkey
+
+Cmd+` toggles Kitty terminal (like iTerm2's hotkey window)
+
+The Hammerspoon config is automatically linked by the installer.
+
+## 🆘 Troubleshooting
+
+**Zsh theme not showing:**
+```bash
+p10k configure
+```
+
+**Neovim plugins not loading:**
+```bash
+nvim
+:Lazy sync
+```
+
+**Command not found after install:**
+```bash
+source ~/.zshrc
+# or restart terminal
+```
+
+**NVM not working:**
+```bash
+# Make sure NVM directory exists
+mkdir -p ~/.nvm
+source ~/.zshrc
+```
+
+## 📄 License
 
 Personal configuration files - use at your own risk!
-
-## Security Notes
-
-### Sensitive Information
-
-This repository is safe to share publicly. Sensitive information like API keys, passwords, and work-specific configurations are kept in separate files that are NOT tracked in git:
-
-- `~/.work_zshrc.zsh` - Work-specific environment variables and credentials
-- The `.gitignore` is configured to exclude all work-related, credential, and secret files
-
-### Work Configuration
-
-The `.zshrc` sources `~/.work_zshrc.zsh` which should contain:
-```bash
-# Work-specific environment variables
-export PEQUITY_CLONE_DB="..."
-export PEQUITY_CLONE_USER="..."
-export PEQUITY_CLONE_PGPASSWORD="..."
-export PEQUITY_CLONE_HOST="..."
-# Add other work-specific configs here
-```
-
-**NEVER** commit the `~/.work_zshrc.zsh` file to version control!
-
-## Fresh Setup
-
-### Neovim Configurations Available
-
-1. **nvim** (NvChad) - Original configuration with NvChad v2.5
-2. **nvim-lazyvim** - Previous LazyVim experiments
-3. **nvim-fresh** - **NEW!** Clean, optimized LazyVim setup
-
-### Using the Fresh LazyVim Config
-
-```bash
-ln -sf ~/dotfiles/config/nvim-fresh ~/.config/nvim
-nvim
-```
-
-The fresh config includes:
-- Python/Django support (Pyright, Ruff)
-- Git integration (GitSigns, LazyGit)
-- Modern UI (Tokyo Night theme)
-- Optimized keymaps for development
-- Telescope file finder
-- Neo-tree file explorer
-
-### Switching Between Configs
-
-```bash
-# Use fresh LazyVim
-ln -sf ~/dotfiles/config/nvim-fresh ~/.config/nvim
-
-# Use original NvChad
-ln -sf ~/dotfiles/config/nvim ~/.config/nvim
-
-# Use old LazyVim experiments
-ln -sf ~/dotfiles/config/nvim-lazyvim ~/.config/nvim
-```
-
-### Kitty Terminal Setup
-
-The Kitty config includes:
-- Tokyo Night color scheme matching Neovim
-- JetBrains Mono font
-- Optimized performance settings
-- macOS-friendly keybindings
-- Background opacity for modern look
-
-#### Setting up Cmd+` Hotkey for Kitty
-
-**Option 1: macOS Keyboard Shortcuts (Easiest)**
-1. Open **System Settings → Keyboard → Keyboard Shortcuts**
-2. Click **App Shortcuts** → **+** button
-3. Application: **Kitty.app**
-4. Menu Title: **New OS Window**
-5. Keyboard Shortcut: **Cmd+`**
-6. Click **Add**
-
-**Option 2: Hammerspoon** (if you use it):
-```lua
-hs.hotkey.bind({"cmd"}, "`", function()
-  local kitty = hs.application.find("Kitty")
-  if kitty then
-    if kitty:isFrontmost() then
-      kitty:hide()
-    else
-      kitty:activate()
-    end
-  else
-    hs.application.launchOrFocus("Kitty")
-  end
-end)
-```

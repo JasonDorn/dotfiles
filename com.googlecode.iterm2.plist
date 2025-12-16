@@ -829,7 +829,7 @@
 			<key>Guid</key>
 			<string>5D0E35FC-B1A3-40BB-84B2-EB5D8A4C5771</string>
 			<key>Has Hotkey</key>
-			<true/>
+			<false/>
 			<key>Horizontal Spacing</key>
 			<real>1</real>
 			<key>HotKey Activated By Modifier</key>

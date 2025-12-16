@@ -5,4 +5,3 @@
 	ui = true
 [core]
 	editor = nvim
-	excludesfile = /Users/jasondorn/.gitignore_global
