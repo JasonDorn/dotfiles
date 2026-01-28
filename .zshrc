@@ -54,8 +54,8 @@ alias sr='spring stop; spring start;'
 alias migrate='be rake db:migrate && be rake db:test:prepare'
 
 # Aliases - Python/Django
-alias pcloneshell="POSTGRES_DB=$PEQUITY_CLONE_DB POSTGRES_USER=$PEQUITY_CLONE_USER POSTGRES_PASSWORD=$PEQUITY_CLONE_PGPASSWORD HOST=$PEQUITY_CLONE_HOST python manage.py shell_plus"
-alias pcloneserver="POSTGRES_DB=$PEQUITY_CLONE_DB POSTGRES_USER=$PEQUITY_CLONE_USER POSTGRES_PASSWORD=$PEQUITY_CLONE_PGPASSWORD HOST=$PEQUITY_CLONE_HOST python manage.py runserver"
+alias pcloneshell="POSTGRES_DB=$CLONE_DB POSTGRES_USER=$CLONE_USER POSTGRES_PASSWORD=$CLONE_PGPASSWORD HOST=$CLONE_HOST python manage.py shell_plus"
+alias pcloneserver="POSTGRES_DB=$CLONE_DB POSTGRES_USER=$CLONE_USER POSTGRES_PASSWORD=$CLONE_PGPASSWORD HOST=$CLONE_HOST python manage.py runserver"
 alias ruff-staged='git diff --name-only --cached --diff-filter=ACM | grep "\.py$" | xargs ruff format'
 
 # Neovim - using LazyVim

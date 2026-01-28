@@ -18,6 +18,39 @@ RED='\033[0;31m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
+# Parse arguments
+WORK_MACHINE=0
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --work)
+            WORK_MACHINE=1
+            export WORK_MACHINE
+            shift
+            ;;
+        --help)
+            echo "Usage: ./install.sh [OPTIONS]"
+            echo ""
+            echo "Options:"
+            echo "  --work      Install work machine configuration (excludes personal apps)"
+            echo "  --help      Show this help message"
+            echo ""
+            exit 0
+            ;;
+        *)
+            echo "Unknown option: $1"
+            echo "Run './install.sh --help' for usage information"
+            exit 1
+            ;;
+    esac
+done
+
+if [ "$WORK_MACHINE" = "1" ]; then
+    echo -e "${BLUE}Installing for WORK machine (personal apps excluded)${NC}"
+else
+    echo -e "${BLUE}Installing for PERSONAL machine (all apps)${NC}"
+fi
+echo ""
+
 # Helper functions
 print_step() {
     echo ""
@@ -76,29 +109,21 @@ else
     print_success "Homebrew already installed"
 fi
 
-# Install essential CLI tools
-print_step "Installing essential CLI tools..."
-brew install \
-    ripgrep \
-    fd \
-    fzf \
-    lazygit \
-    tree \
-    bat \
-    eza \
-    zoxide \
-    neovim \
-    tmux \
-    git \
-    direnv \
-    rbenv \
-    pyenv \
-    nvm \
-    postgresql@17 \
-    kitty \
-    || print_warning "Some packages may have failed to install"
-
-print_success "CLI tools installed"
+# Install packages from Brewfile
+print_step "Installing packages from Brewfile..."
+if [ -f "$DOTFILES_DIR/Brewfile" ]; then
+    cd "$DOTFILES_DIR"
+    if [ "$WORK_MACHINE" = "1" ]; then
+        print_warning "Installing work machine packages (personal apps excluded)"
+        WORK_MACHINE=1 brew bundle --file="$DOTFILES_DIR/Brewfile" || print_warning "Some packages may have failed to install"
+    else
+        brew bundle --file="$DOTFILES_DIR/Brewfile" || print_warning "Some packages may have failed to install"
+    fi
+    cd - > /dev/null
+    print_success "Packages installed via Brewfile"
+else
+    print_error "Brewfile not found! Skipping package installation."
+fi
 
 # Install Oh My Zsh
 print_step "Installing Oh My Zsh..."
@@ -127,10 +152,14 @@ else
     print_success "Zsh Syntax Highlighting already installed"
 fi
 
-# Copy p10k config if it doesn't exist
+# Copy p10k config if available in dotfiles
 print_step "Setting up Powerlevel10k configuration..."
-if [ ! -f "$HOME/.p10k.zsh" ]; then
-    # Use default p10k config or create minimal one
+if [ -f "$DOTFILES_DIR/.p10k.zsh" ] && [ ! -f "$HOME/.p10k.zsh" ]; then
+    cp "$DOTFILES_DIR/.p10k.zsh" "$HOME/.p10k.zsh"
+    print_success "Copied .p10k.zsh configuration"
+elif [ -f "$HOME/.p10k.zsh" ]; then
+    print_success "Powerlevel10k config already exists"
+else
     print_warning "No .p10k.zsh found. You'll need to run 'p10k configure' after installation."
 fi
 
@@ -160,9 +189,15 @@ create_symlink "$DOTFILES_DIR/config/nvim" "$HOME/.config/nvim"
 # Create work config template
 print_step "Setting up work configuration..."
 if [ ! -f "$HOME/.work_zshrc.zsh" ]; then
-    cp "$DOTFILES_DIR/.work_zshrc.zsh.template" "$HOME/.work_zshrc.zsh"
-    print_success "Created ~/.work_zshrc.zsh template"
-    print_warning "Edit ~/.work_zshrc.zsh to add your work-specific environment variables"
+    if [ -f "$DOTFILES_DIR/.work_zshrc.zsh.template" ]; then
+        cp "$DOTFILES_DIR/.work_zshrc.zsh.template" "$HOME/.work_zshrc.zsh"
+        print_success "Created ~/.work_zshrc.zsh template"
+        print_warning "Edit ~/.work_zshrc.zsh to add your work-specific environment variables"
+    else
+        touch "$HOME/.work_zshrc.zsh"
+        print_success "Created empty ~/.work_zshrc.zsh file"
+        print_warning "Edit ~/.work_zshrc.zsh to add your work-specific environment variables"
+    fi
 else
     print_success "Work config already exists"
 fi
@@ -215,16 +250,24 @@ echo "Backup saved to: $BACKUP_DIR"
 echo ""
 echo -e "${YELLOW}Next steps:${NC}"
 echo "  1. Restart your terminal or run: source ~/.zshrc"
-echo "  2. Open Neovim: nvim"
-echo "     - Lazy.nvim will auto-install plugins on first launch"
-echo "  3. Configure Powerlevel10k: p10k configure (if needed)"
+echo "  2. Open Neovim (plugins auto-install on first launch): nvim"
+if [ ! -f "$HOME/.p10k.zsh" ]; then
+    echo "  3. Configure Powerlevel10k: p10k configure"
+fi
 echo "  4. Edit ~/.work_zshrc.zsh with work-specific configs"
-echo "  5. Install Kitty.app from: https://sw.kovidgoyal.net/kitty/"
-echo "  6. Install Hammerspoon from: https://www.hammerspoon.org/"
 echo ""
-echo -e "${BLUE}Optional installations:${NC}"
-echo "  - Install a Nerd Font: brew install --cask font-jetbrains-mono-nerd-font"
+echo -e "${BLUE}Recommended actions:${NC}"
+echo "  - Install JetBrains Mono Nerd Font: brew install --cask font-jetbrains-mono-nerd-font"
+echo "  - Launch Hammerspoon and enable it in System Settings > Privacy & Security"
+echo "  - Set Kitty as your default terminal"
+echo ""
+echo -e "${BLUE}Install language runtimes (as needed):${NC}"
 echo "  - Ruby: rbenv install 3.2.0 && rbenv global 3.2.0"
-echo "  - Python: pyenv install 3.11.0 && pyenv global 3.11.0"
-echo "  - Node: nvm install --lts"
+echo "  - Python: pyenv install 3.12.0 && pyenv global 3.12.0"
+echo "  - Node: nvm install --lts && nvm use --lts"
 echo ""
+if [ "$WORK_MACHINE" = "1" ]; then
+    echo -e "${YELLOW}Work machine setup complete!${NC}"
+    echo "Personal apps (music, communication, VPN) were excluded."
+    echo ""
+fi
