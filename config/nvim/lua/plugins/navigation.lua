@@ -41,50 +41,14 @@ return {
     end,
   },
 
-  -- Other.nvim - Switch between related files (test/implementation)
+  -- vim-projectionist - Switch between related files (test/implementation, Rails navigation)
   {
-    "rgroli/other.nvim",
+    "tpope/vim-projectionist",
     config = function()
-      require("other-nvim").setup({
-        mappings = {
-          -- Ruby on Rails
-          {
-            pattern = "/app/(.*)/(.*).rb$",
-            target = "/spec/%1/%2_spec.rb",
-            context = "spec",
-          },
-          {
-            pattern = "/spec/(.*)/(.*).rb$",
-            target = "/app/%1/%2.rb",
-            context = "implementation",
-          },
-          -- JavaScript/TypeScript
-          {
-            pattern = "/(.*)/(.*).ts$",
-            target = "/%1/%2.spec.ts",
-            context = "spec",
-          },
-          {
-            pattern = "/(.*)/(.*).spec.ts$",
-            target = "/%1/%2.ts",
-            context = "implementation",
-          },
-          {
-            pattern = "/(.*)/(.*).tsx$",
-            target = "/%1/%2.spec.tsx",
-            context = "spec",
-          },
-          {
-            pattern = "/(.*)/(.*).spec.tsx$",
-            target = "/%1/%2.tsx",
-            context = "implementation",
-          },
-          -- Add more patterns as needed
-        },
-      })
-
-      vim.keymap.set("n", "<leader>o", "<cmd>Other<CR>", { desc = "Other: Switch to related file" })
-      vim.keymap.set("n", "<leader>av", "<cmd>OtherVSplit<CR>", { desc = "Other: Open in vsplit" })
+      -- Set up keymaps for convenience
+      vim.keymap.set("n", "<leader>a", "<cmd>A<CR>", { desc = "Projectionist: Alternate file" })
+      vim.keymap.set("n", "<leader>av", "<cmd>AV<CR>", { desc = "Projectionist: Alternate vsplit" })
+      vim.keymap.set("n", "<leader>as", "<cmd>AS<CR>", { desc = "Projectionist: Alternate split" })
     end,
   },
 }

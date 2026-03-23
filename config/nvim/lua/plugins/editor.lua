@@ -61,7 +61,7 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     keys = {
-      { "<leader>e", "<cmd>Neotree toggle<cr>", desc = "Toggle file explorer" },
+      { "<leader>e", "<cmd>Neotree toggle reveal<cr>", desc = "Toggle file explorer" },
       { "<leader>fe", "<cmd>Neotree focus<cr>", desc = "Focus file explorer" },
     },
     opts = {
